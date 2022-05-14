@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  app:
+    container_name: "gobel-client-example"
+    env_file: ".env"
+    build:
+        context: "./app"
+        dockerfile: "Dockerfile.local"
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./app:/go/gobel-client-example/app
+    networks:
+      - gobel_link
+  nginx:
+    container_name: "gobel-client-example-nginx"
+    build:
+        context: "./nginx"
+        dockerfile: "Dockerfile.local"
+    ports:
+      - "81:80"
+    networks:
+      - gobel_link
+    depends_on:
+      - app
+networks:
+    gobel_link:
+        external: true

@@ -1,0 +1,9 @@
+.DS_STORE
+
+# app
+/app/tmp
+.env
+
+# editor
+.vscode/
+launch.json
