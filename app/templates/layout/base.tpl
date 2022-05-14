@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <title>gobel-client-example</title>
+    <title>bmf-tech.com</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
@@ -23,7 +23,7 @@
             <nav class="nav sp-hidden">
                 <div class="col-nav">
                     <div class="nav-left">
-                        <a class="nav-link-logo"><b>gobel-client-example</b></a>
+                        <a class="nav-link-logo"><b>bmf-tech</b></a>
                     </div>
                     <div class="nav-right">
                         <a class="nav-link" href="/">Home</a>
