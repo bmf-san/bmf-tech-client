@@ -39,16 +39,16 @@ endif
 
 .PHONY: build-and-push
 build-and-push: ## Build and push image to dockerhub.
-	docker build -f app/Dockerfile -t bmfsan/gobel-client-example ./app/
-	docker push bmfsan/gobel-client-example
+	docker build -f app/Dockerfile -t bmfsan/bmf-tech-client ./app/
+	docker push bmfsan/bmf-tech-client
 
 .PHONY: lint
 lint: ## Run golint.
-	docker exec -it gobel-client-example golint ./...
+	docker exec -it bmf-tech-client golint ./...
 
 .PHONY: test
 test: ## Run tests.
-	docker exec -it gobel-client-example go test -v ./...
+	docker exec -it bmf-tech-client go test -v ./...
 
 .PHONY: build
 build: ## Run go build

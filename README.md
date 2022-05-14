@@ -1,40 +1,28 @@
-# gobel-client-example
-[![GitHub license](https://img.shields.io/github/license/bmf-san/gobel-client-example)](https://github.com/bmf-san/gobel-client-example/blob/master/LICENSE)
-[![CircleCI](https://circleci.com/gh/bmf-san/gobel-client-example.svg?style=svg)](https://circleci.com/gh/bmf-san/gobel-client-example)
-
-Gobel is a headless cms built with golang. 
-
-This is an example for client application of gobel.
-
-# gobel
-- [gobel-api](https://github.com/bmf-san/gobel-api)
-- [gobel-admin-client-example](https://github.com/bmf-san/gobel-admin-client-example)
-- [gobel-client-example](https://github.com/bmf-san/gobel-client-example)
-- [gobel-example](https://github.com/bmf-san/gobel-example)
-- [gobel-ops-example](https://github.com/bmf-san/gobel-ops-example)
+# bmf-tech-client
+[![CircleCI](https://circleci.com/gh/bmf-san/bmf-tech-client.svg?style=svg)](https://circleci.com/gh/bmf-san/bmf-tech-client)
 
 # Dockerhub
-[bmfsan/gobel-client-example](https://hub.docker.com/r/bmfsan/gobel-client-example)
+[bmfsan/bmf-tech-client](https://hub.docker.com/r/bmfsan/bmf-tech-client)
 
-# Get started
-Before you start, you need to clone [gobel-api](https://github.com/bmf-san/gobel-api).
+# ローカル開発環境
+[gobel-api](https://github.com/bmf-san/gobel-api)の起動が必要。
 
-## Edit an env file
+## envファイルの準備
 ```
 cp .env_example .env
 ```
 
-## Edit a host file
+## hostsの編集
 ```
-127.0.0.1 gobel-client-example.local
+127.0.0.1 bmf-tech-client.local
 ```
 
-## Build containers
+## コンテナのビルド
 ```
 make docker-compose-build
 ```
 
-## Run containers
+## コンテナの起動
 ```
 make docker-compose-up
 ```
@@ -45,18 +33,4 @@ or
 make docker-compose-up-d
 ```
 
-Then go to `gobel-client-example.local:81`
-
-# Contributing
-We welcome your issue or pull request from everyone.
-Please make sure to read the [CONTRIBUTING.md](https://github.com/bmf-san/gobel-client-example/.github/CONTRIBUTING.md).
-
-# License
-This project is licensed under the terms of the MIT license.
-
-# Author
-bmf - Software engineer.
-
-- [github - bmf-san/bmf-san](https://github.com/bmf-san/bmf-san)
-- [twitter - @bmf-san](https://twitter.com/bmf_san)
-- [blog - bmf-tech](http://bmf-tech.com/)
+Then go to `bmf-tech-client.local:81`

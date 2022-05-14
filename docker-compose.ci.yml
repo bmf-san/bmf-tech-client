@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    container_name: "gobel-client-example"
+    container_name: "bmf-tech-client"
     build:
         context: "./app"
         dockerfile: "Dockerfile.ci"

@@ -1,7 +1,7 @@
 FROM nginx:1.21.3-alpine
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./conf.d/gobel-client-example.conf /etc/nginx/conf.d/gobel-client-example.conf
+COPY ./conf.d/bmf-tech-client.conf /etc/nginx/conf.d/bmf-tech-client.conf
 
-RUN ln -sf /dev/stdout /var/log/nginx/access_gobel_client_example.log \
-    && ln -sf /dev/stderr /var/log/nginx/error_gobel_client_example.log \
+RUN ln -sf /dev/stdout /var/log/nginx/access_bmf_tech_client.log \
+    && ln -sf /dev/stderr /var/log/nginx/error_bmf_tech_client.log \

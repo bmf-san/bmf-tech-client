@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   app:
-    container_name: "gobel-client-example"
+    container_name: "bmf-tech-client"
     env_file: ".env"
     build:
         context: "./app"
@@ -9,11 +9,11 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - ./app:/go/gobel-client-example/app
+      - ./app:/go/bmf-tech-client/app
     networks:
       - gobel_link
   nginx:
-    container_name: "gobel-client-example-nginx"
+    container_name: "bmf-tech-client-nginx"
     build:
         context: "./nginx"
         dockerfile: "Dockerfile.local"
