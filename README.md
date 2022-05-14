@@ -1,5 +1,5 @@
 # bmf-tech-client
-[![CircleCI](https://circleci.com/gh/bmf-san/bmf-tech-client.svg?style=svg)](https://circleci.com/gh/bmf-san/bmf-tech-client)
+[![CircleCI](https://circleci.com/gh/bmf-san/bmf-tech-client/tree/master.svg?style=svg)](https://circleci.com/gh/bmf-san/bmf-tech-client/tree/master)
 
 # Dockerhub
 [bmfsan/bmf-tech-client](https://hub.docker.com/r/bmfsan/bmf-tech-client)
