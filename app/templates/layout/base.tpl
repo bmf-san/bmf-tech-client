@@ -15,6 +15,8 @@
     <meta property="og:locale" content="ja_JP" />
     <meta name="twitter:card" content="" />
     <meta name="twitter:site" content="" />
+	<!-- TODO: 本番リリース後に外す -->
+	<meta name="robots" content="noindex">
 	<link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
 </head>
 <body>
