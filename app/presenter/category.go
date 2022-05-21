@@ -15,7 +15,10 @@ type CategoryIndex struct {
 
 // ExecuteCategoryIndex responses a index template.
 func (p *Presenter) ExecuteCategoryIndex(w http.ResponseWriter, c *CategoryIndex) error {
-	tpl := template.Must(template.ParseFS(p.templates, "templates/layout/base.tpl", "templates/category/index.tpl", "templates/partial/pagination.tpl", "templates/partial/pagination.tpl"))
+	fm := template.FuncMap{
+		"year": p.year,
+	}
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/category/index.tpl", "templates/partial/pagination.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", c); err != nil {
 		return err
 	}
