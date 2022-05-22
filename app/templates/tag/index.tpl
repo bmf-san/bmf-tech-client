@@ -10,7 +10,7 @@
 </div>
 {{ end }}
 {{ define "body" }}
-<div class="container-readable">
+<div class="container-readable margin-top-2rem">
     <div class="row">
         <div class="col">
         {{ range $i, $v := .Tags }}

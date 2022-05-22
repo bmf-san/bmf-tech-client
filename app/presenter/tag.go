@@ -15,7 +15,10 @@ type TagIndex struct {
 
 // ExecuteTagIndex responses a index template.
 func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, t *TagIndex) error {
-	tpl := template.Must(template.ParseFS(p.templates, "templates/layout/base.tpl", "templates/tag/index.tpl", "templates/partial/pagination.tpl", "templates/partial/pagination.tpl"))
+	fm := template.FuncMap{
+		"year": p.year,
+	}
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/tag/index.tpl", "templates/partial/pagination.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", t); err != nil {
 		return err
 	}

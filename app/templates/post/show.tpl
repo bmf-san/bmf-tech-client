@@ -4,14 +4,6 @@
         <div class="row">
             <div class="col">
                 <h1 class="text-align-center color-text-reverse">{{ .Post.Title }}</h1>
-                <div class="text-align-center">
-                    {{ range .Post.Tags }}
-                    <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
-                    {{ end }}
-                </div>
-                <div class="text-align-center">
-                    <a href="/posts/categories/{{ .Post.Category.Name }}">{{ .Post.Category.Name }}</a>
-                </div>
             </div>
         </div>
     </div>
@@ -19,11 +11,24 @@
 {{ end }}
 {{ define "body" }}
 <section>
-    <div class="container-readable">
+    <div class="container-readable margin-top-2rem">
         <div class="row">
-            <div class="col">
-                <p><span class="article-date">{{ .Post.CreatedAt.Format "2006 Jan 02" }}</span>・<span class="article-date">Updated On{{ .Post.UpdatedAt.Format "2006 Jan 02" }}</span></p>
+            <div class="col text">
+                <div class="text-align-right">
+                    <span class="article-date"><span class="article-date">{{ .Post.UpdatedAt.Format "2006年1月2日 01:02:03" }} 更新</span>
+                </div>
+                <div class="text-align-right margin-top-1rem">
+                    <a href="/posts/categories/{{ .Post.Category.Name }}">{{ .Post.Category.Name }}</a>
+                </div>
+                <div class="text-align-right margin-top-1rem">
+                {{ range .Post.Tags }}
+                    <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
+                {{ end }}
+                </div>
+				<div>
+
                 {{ .Post.HTMLBody | unescape }}
+				</div>
             </div>
         </div>
     </div>

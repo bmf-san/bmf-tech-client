@@ -3,6 +3,7 @@ package presenter
 import (
 	"embed"
 	"html/template"
+	"time"
 )
 
 // Presenter represents the singular of presenter.
@@ -19,4 +20,8 @@ func NewPresenter(templates embed.FS) *Presenter {
 
 func (p *Presenter) unescape(text string) template.HTML {
 	return template.HTML(text)
+}
+
+func (p *Presenter) year() int {
+	return time.Now().Year()
 }
