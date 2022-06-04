@@ -38,7 +38,7 @@
             <nav class="nav sp-hidden">
                 <div class="col-nav">
                     <div class="nav-left">
-                        <a class="nav-link-logo"><b>bmf-tech</b></a>
+                        <a class="nav-link-logo" href="/"><b>bmf-tech</b></a>
                     </div>
                     <div class="nav-right">
                         <a class="nav-link" href="/">ホーム</a>
