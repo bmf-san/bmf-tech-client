@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="text-align-center color-text-reverse">Tags</h1>
+                <h1 class="text-align-center color-text-reverse">タグ</h1>
             </div>
         </div>
     </div>
