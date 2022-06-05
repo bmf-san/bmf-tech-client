@@ -3,35 +3,30 @@
 <html lang="ja">
 <head>
     <title>bmf-tech.com</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="og:title" content="" />
-    <meta name="og:description" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="">
-    <meta property="og:image" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:locale" content="ja_JP" />
-    <meta name="twitter:card" content="" />
-    <meta name="twitter:site" content="" />
-	<!-- TODO: noindexは本番リリース後に外す -->
-	<meta name="robots" content="noindex">
-	<link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/styles/monokai.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+    {{ template "meta" .Meta }}
+    <link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-784B55NW88"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-784B55NW88');
+    </script>
+    <!-- Google Adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201"
+        crossorigin="anonymous"></script>
+    <!-- bmf-tech -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5146230866088201" data-ad-slot="9196954828"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </head>
-<!-- TODO: 本番リリース前にコメントアウト外して有効化 -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201"
-	crossorigin="anonymous"></script> -->
-<!-- bmf-tech -->
-<!-- TODO: 本番リリース前にコメントアウト外して有効化 -->
-<!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5146230866088201" data-ad-slot="9196954828"
-	data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-</script> -->
 <body>
     <header>
         <div>
@@ -86,7 +81,7 @@
                     <a class="color-text-reverse" href="https://github.com/bmf-san">Github</a>
                 </div>
                 <div class="col">
-                    <a class="color-text-reverse" href="/sitemap">RSS</a>
+                    <a class="color-text-reverse" href="/sitemap">Sitemap</a>
                 </div>
                 <div class="col">
                     <a class="color-text-reverse" href="/feed">Feed</a>

@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col">
             <ul>
-                {{ range $i, $v := .Categories }}
+                {{ range $i, $v := .Categories.Categories }}
                 <li>
                     <a href="/posts/categories/{{ $v.Name }}">{{ $v.Name }}</a>
                 </li>
@@ -23,5 +23,5 @@
         </div>
     </div>
 </div>
-{{ template "pagination" .Pagination }}
+{{ template "pagination" .Categories.Pagination }}
 {{ end }}

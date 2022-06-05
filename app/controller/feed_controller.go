@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/model"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/model"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A FeedController is a controller for feed.
@@ -57,14 +57,15 @@ func (fc *FeedController) Index() http.Handler {
 		}
 
 		var entries []model.FeedEntry
+		url := fc.Presenter.BaseURL(r.URL)
 		for _, p := range posts {
-			fc.Client.URL.Path = "/posts/" + p.Title
+			u := url + "/posts/" + p.Title
 			entry := model.FeedEntry{
 				Title: p.Title,
 				Link: model.FeedLink{
-					Href: fc.Client.URL.String(),
+					Href: u,
 				},
-				ID:        fc.Client.URL.String(),
+				ID:        u,
 				Updated:   p.UpdatedAt,
 				Published: p.CreatedAt,
 				Author: model.FeedAuthor{
@@ -78,19 +79,17 @@ func (fc *FeedController) Index() http.Handler {
 			entries = append(entries, entry)
 		}
 
-		fc.Client.URL.Path = ""
-
 		feed := model.Feed{
 			Title:    "Gobel",
 			Subtitle: "Gobel is a headless cms built with golang.",
 			Link: model.FeedLink{
-				Href: fc.Client.URL.String(),
+				Href: url,
 			},
 			Updated: posts[len(posts)-1].UpdatedAt,
 			Author: model.FeedAuthor{
 				Name: "bmf_san",
 			},
-			ID:      fc.Client.URL.String(),
+			ID:      url,
 			Entries: entries,
 		}
 

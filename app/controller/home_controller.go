@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/model"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/model"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A HomeController is a controller for a home.
@@ -61,7 +61,7 @@ func (hc *HomeController) Index() http.Handler {
 			return
 		}
 
-		if err = hc.Presenter.ExecuteHomeIndex(w, &presenter.PostIndex{
+		if err = hc.Presenter.ExecuteHomeIndex(w, r, &presenter.PostIndex{
 			Posts: &posts,
 		}); err != nil {
 			hc.Logger.Error(err.Error())

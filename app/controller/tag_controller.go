@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/model"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/model"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A TagController is a controller for a tag.
@@ -63,7 +63,7 @@ func (tc *TagController) Index() http.Handler {
 			return
 		}
 
-		if err = tc.Presenter.ExecuteTagIndex(w, &presenter.TagIndex{
+		if err = tc.Presenter.ExecuteTagIndex(w, r, &presenter.TagIndex{
 			Tags:       &tags,
 			Pagination: &pagination,
 		}); err != nil {

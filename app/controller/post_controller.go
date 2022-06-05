@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/model"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/model"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 	"github.com/bmf-san/goblin"
 )
 
@@ -69,7 +69,7 @@ func (pc *PostController) Index() http.Handler {
 			return
 		}
 
-		if err = pc.Presenter.ExecutePostIndex(w, &presenter.PostIndex{
+		if err = pc.Presenter.ExecutePostIndex(w, r, &presenter.PostIndex{
 			Posts:      &posts,
 			Pagination: &pagination,
 		}); err != nil {
@@ -121,7 +121,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			return
 		}
 
-		if err = pc.Presenter.ExecutePostIndexByCategory(w, &presenter.PostIndexByCategory{
+		if err = pc.Presenter.ExecutePostIndexByCategory(w, r, &presenter.PostIndexByCategory{
 			CategoryName: name,
 			Posts:        &posts,
 			Pagination:   &pagination,
@@ -175,7 +175,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			return
 		}
 
-		if err = pc.Presenter.ExecutePostIndexByTag(w, &presenter.PostIndexByTag{
+		if err = pc.Presenter.ExecutePostIndexByTag(w, r, &presenter.PostIndexByTag{
 			TagName:    name,
 			Posts:      &posts,
 			Pagination: &pagination,
@@ -216,7 +216,7 @@ func (pc *PostController) Show() http.Handler {
 			return
 		}
 
-		if err = pc.Presenter.ExecutePostShow(w, &presenter.PostShow{
+		if err = pc.Presenter.ExecutePostShow(w, r, &presenter.PostShow{
 			Post: &post,
 		}); err != nil {
 			pc.Logger.Error(err.Error())
