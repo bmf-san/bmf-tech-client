@@ -10,10 +10,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/controller"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/controller"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 	"github.com/bmf-san/goblin"
 )
 

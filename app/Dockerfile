@@ -1,6 +1,6 @@
 FROM golang:1.17.1-alpine as builder
 
-WORKDIR /go/gobel-client-example/app
+WORKDIR /go/bmf-tech-client/app
 
 COPY . .
 
@@ -16,6 +16,6 @@ RUN go build -o app
 
 FROM --platform=linux/amd64 alpine
 
-COPY --from=builder /go/gobel-client-example/app ./
+COPY --from=builder /go/bmf-tech-client/app ./
 
 CMD ["./app"]

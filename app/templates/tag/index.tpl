@@ -13,11 +13,11 @@
 <div class="container-readable margin-top-2rem">
     <div class="row">
         <div class="col">
-        {{ range $i, $v := .Tags }}
+        {{ range $i, $v := .Tags.Tags }}
         <a class="tag margin-1rem" href="/posts/tags/{{ $v.Name }}">{{ $v.Name }}</a>
         {{ end }}
         </div>
     </div>
 </div>
-{{ template "pagination" .Pagination }}
+{{ template "pagination" .Tags.Pagination }}
 {{ end }}

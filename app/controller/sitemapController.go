@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/bmf-san/gobel-client-example/app/api"
-	"github.com/bmf-san/gobel-client-example/app/logger"
-	"github.com/bmf-san/gobel-client-example/app/model"
-	"github.com/bmf-san/gobel-client-example/app/presenter"
+	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/model"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A SitemapController is a controller for a sitemap.
@@ -105,34 +105,31 @@ func (si *SitemapController) Index() http.Handler {
 
 		var urlset model.URLSet
 
+		loc := si.Presenter.BaseURL(r.URL)
 		for _, s := range [...]string{"/", "/posts", "/categories", "/tags", "/sitemap", "/feed"} {
-			si.Client.URL.Path = s
 			url := model.URL{
-				Loc: si.Client.URL.String(),
+				Loc: loc + s,
 			}
 			urlset.URLs = append(urlset.URLs, url)
 		}
 
 		for _, p := range posts {
-			si.Client.URL.Path = "/posts/" + p.Title
 			url := model.URL{
-				Loc: si.Client.URL.String(),
+				Loc: loc + "/posts/" + p.Title,
 			}
 			urlset.URLs = append(urlset.URLs, url)
 		}
 
 		for _, c := range categories {
-			si.Client.URL.Path = "/posts/categories/" + c.Name
 			url := model.URL{
-				Loc: si.Client.URL.String(),
+				Loc: loc + "/posts/categories/" + c.Name,
 			}
 			urlset.URLs = append(urlset.URLs, url)
 		}
 
 		for _, t := range tags {
-			si.Client.URL.Path = "/posts/tags/" + t.Name
 			url := model.URL{
-				Loc: si.Client.URL.String(),
+				Loc: loc + "/posts/tags/" + t.Name,
 			}
 			urlset.URLs = append(urlset.URLs, url)
 		}

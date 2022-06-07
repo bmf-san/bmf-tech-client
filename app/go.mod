@@ -1,4 +1,4 @@
-module github.com/bmf-san/gobel-client-example/app
+module github.com/bmf-san/bmf-tech-client/app
 
 go 1.17
 

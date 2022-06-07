@@ -1,6 +1,6 @@
 FROM golang:1.17.1-alpine
 
-WORKDIR /go/gobel-client-example/app
+WORKDIR /go/bmf-tech-client/app
 
 COPY . .
 

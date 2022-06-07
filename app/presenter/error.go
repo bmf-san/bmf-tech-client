@@ -3,6 +3,8 @@ package presenter
 import (
 	"html/template"
 	"net/http"
+
+	"github.com/bmf-san/bmf-tech-client/app/model"
 )
 
 // ErrorData is a data for template.
@@ -21,11 +23,12 @@ func (p *Presenter) Error(w http.ResponseWriter, code int) {
 	fm := template.FuncMap{
 		"year": p.year,
 	}
-	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/error/index.tpl"))
+	m := &model.Meta{NoIndex: true}
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/error/index.tpl"))
 
 	w.WriteHeader(e.Code)
 
-	if err := tpl.ExecuteTemplate(w, "base", e); err != nil {
+	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
 		w.Write([]byte(err.Error()))
 	}
 }
@@ -34,7 +37,7 @@ func (p *Presenter) Error(w http.ResponseWriter, code int) {
 func handleErrorMessage(code int) string {
 	switch code {
 	case http.StatusInternalServerError:
-		return "An unexpected condition has occured"
+		return "すみません！エラーです！"
 	}
 	return ""
 }
