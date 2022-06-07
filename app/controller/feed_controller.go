@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/logger"
@@ -57,7 +58,7 @@ func (fc *FeedController) Index() http.Handler {
 		}
 
 		var entries []model.FeedEntry
-		url := fc.Presenter.BaseURL(r.URL)
+		url := os.Getenv("BASE_URL")
 		for _, p := range posts {
 			u := url + "/posts/" + p.Title
 			entry := model.FeedEntry{

@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/logger"
@@ -105,7 +106,7 @@ func (si *SitemapController) Index() http.Handler {
 
 		var urlset model.URLSet
 
-		loc := si.Presenter.BaseURL(r.URL)
+		loc := os.Getenv("BASE_URL")
 		for _, s := range [...]string{"/", "/posts", "/categories", "/tags", "/sitemap", "/feed"} {
 			url := model.URL{
 				Loc: loc + s,

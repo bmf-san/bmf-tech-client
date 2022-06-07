@@ -3,6 +3,7 @@ package presenter
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/model"
 )
@@ -18,12 +19,13 @@ func (p *Presenter) ExecuteCategoryIndex(w http.ResponseWriter, r *http.Request,
 	fm := template.FuncMap{
 		"year": p.year,
 	}
+	u := os.Getenv("BASE_URL") + "/categories"
 	m := &model.Meta{
-		Canonical:     p.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
 		Description:   "カテゴリ一覧",
 		OGTitle:       "カテゴリ一覧",
 		OGDescription: "カテゴリ一覧",
-		OGURL:         p.CurrentURLWithoutQuery(r.URL),
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",

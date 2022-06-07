@@ -3,6 +3,7 @@ package presenter
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/model"
 )
@@ -13,12 +14,13 @@ func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p 
 		"year": pt.year,
 	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/home/index.tpl", "templates/partial/posts.tpl"))
+	u := os.Getenv("BASE_URL")
 	m := &model.Meta{
-		Canonical:     pt.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
 		Description:   "bmf-tech",
 		OGTitle:       "bmf-tech",
 		OGDescription: "bmf-techはソフトウェアエンジニアであるbmf-sanが日々の技術ネタを投稿するサイトです。",
-		OGURL:         pt.CurrentURLWithoutQuery(r.URL),
+		OGURL:         u,
 		OGType:        "website",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",

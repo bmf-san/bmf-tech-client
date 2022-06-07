@@ -3,6 +3,7 @@ package presenter
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/model"
 )
@@ -18,12 +19,13 @@ func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *T
 	fm := template.FuncMap{
 		"year": p.year,
 	}
+	u := os.Getenv("BASE_URL") + "/tags"
 	m := &model.Meta{
-		Canonical:     p.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
 		Description:   "タグ一覧",
 		OGTitle:       "タグ一覧",
 		OGDescription: "タグ一覧",
-		OGURL:         p.CurrentURLWithoutQuery(r.URL),
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",
