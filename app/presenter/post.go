@@ -3,6 +3,7 @@ package presenter
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/model"
 )
@@ -37,12 +38,13 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 	fm := template.FuncMap{
 		"year": pt.year,
 	}
+	u := os.Getenv("BASE_URL") + "/posts"
 	m := &model.Meta{
-		Canonical:     pt.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
 		Description:   "記事一覧",
-		OGTitle:       "記事",
+		OGTitle:       "記事一覧",
 		OGDescription: "記事一覧",
-		OGURL:         pt.CurrentURLWithoutQuery(r.URL),
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",
@@ -63,12 +65,13 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 	fm := template.FuncMap{
 		"year": pt.year,
 	}
+	u := os.Getenv("BASE_URL") + "/posts/categories/" + p.CategoryName
 	m := &model.Meta{
-		Canonical:     pt.CurrentURLWithoutQuery(r.URL),
-		Description:   "カテゴリ別記事一覧",
-		OGTitle:       "カテゴリ別記事",
-		OGDescription: "カテゴリ別記事一覧",
-		OGURL:         pt.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
+		Description:   "カテゴリ別記事一覧：" + p.CategoryName,
+		OGTitle:       "カテゴリ別記事一覧：" + p.CategoryName,
+		OGDescription: "カテゴリ別記事一覧：" + p.CategoryName,
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",
@@ -89,12 +92,13 @@ func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Reques
 	fm := template.FuncMap{
 		"year": pt.year,
 	}
+	u := os.Getenv("BASE_URL") + "/posts/tags/" + p.TagName
 	m := &model.Meta{
-		Canonical:     pt.CurrentURLWithoutQuery(r.URL),
-		Description:   "タグ別記事一覧",
-		OGTitle:       "タグ別記事",
-		OGDescription: "タグ別記事一覧",
-		OGURL:         pt.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
+		Description:   "タグ別記事一覧：" + p.TagName,
+		OGTitle:       "タグ別記事一覧：" + p.TagName,
+		OGDescription: "タグ別記事一覧：" + p.TagName,
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",
@@ -121,13 +125,14 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 	if len(b) < 300 {
 		l = len(b)
 	}
+	u := os.Getenv("BASE_URL") + "/" + p.Post.Title
 	desc := string(b[:l]) + "..."
 	m := &model.Meta{
-		Canonical:     pt.CurrentURLWithoutQuery(r.URL),
+		Canonical:     u,
 		Description:   desc,
 		OGTitle:       p.Post.Title,
 		OGDescription: desc,
-		OGURL:         pt.CurrentURLWithoutQuery(r.URL),
+		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
 		OGSiteName:    "bmf-tech",
