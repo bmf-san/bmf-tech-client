@@ -1,9 +1,9 @@
 {{ define "meta" }}
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	{{ if .NoIndex }}
-	<meta name="robots" content="noindex">
-	{{ else }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{ if .NoIndex }}
+    <meta name="robots" content="noindex">
+    {{ else }}
     <meta name="description" content="{{ .Description }}" />
     <meta name="og:title" content="{{ .OGTitle }}" />
     <meta name="og:description" content="{{ .OGDescription }}" />
