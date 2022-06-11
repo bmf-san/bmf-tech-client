@@ -36,7 +36,9 @@ type PostShow struct {
 // ExecutePostIndex responses a index template.
 func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p *PostIndex) error {
 	fm := template.FuncMap{
-		"year": pt.year,
+		"year":      pt.year,
+		"striptags": pt.StripTags,
+		"summary":   pt.Summary,
 	}
 	u := os.Getenv("BASE_URL") + "/posts"
 	m := &model.Meta{
@@ -63,7 +65,9 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 // ExecutePostIndexByCategory responses a index template by category.
 func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.Request, p *PostIndexByCategory) error {
 	fm := template.FuncMap{
-		"year": pt.year,
+		"year":      pt.year,
+		"striptags": pt.StripTags,
+		"summary":   pt.Summary,
 	}
 	u := os.Getenv("BASE_URL") + "/posts/categories/" + p.CategoryName
 	m := &model.Meta{
@@ -90,7 +94,9 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 // ExecutePostIndexByTag responses a index template by tag.
 func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Request, p *PostIndexByTag) error {
 	fm := template.FuncMap{
-		"year": pt.year,
+		"year":      pt.year,
+		"striptags": pt.StripTags,
+		"summary":   pt.Summary,
 	}
 	u := os.Getenv("BASE_URL") + "/posts/tags/" + p.TagName
 	m := &model.Meta{
@@ -120,18 +126,13 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 		"year":     pt.year,
 		"unescape": pt.Unescape,
 	}
-	b := []rune(pt.StripTags(p.Post.HTMLBody))
-	var l int = 300
-	if len(b) < 300 {
-		l = len(b)
-	}
+	s := pt.Summary(pt.StripTags(p.Post.HTMLBody))
 	u := os.Getenv("BASE_URL") + "/" + p.Post.Title
-	desc := string(b[:l]) + "..."
 	m := &model.Meta{
 		Canonical:     u,
-		Description:   desc,
+		Description:   s,
 		OGTitle:       p.Post.Title,
-		OGDescription: desc,
+		OGDescription: s,
 		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
