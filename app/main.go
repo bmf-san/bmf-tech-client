@@ -42,6 +42,10 @@ func main() {
 
 	r := goblin.NewRouter()
 
+	r.Methods(http.MethodGet).Handler(`/ads.txt`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
+	}))
+
 	r.Methods(http.MethodGet).Handler(`/`, hc.Index())
 	r.Methods(http.MethodGet).Handler(`/posts`, pc.Index())
 	r.Methods(http.MethodGet).Handler(`/posts/:title`, pc.Show())
