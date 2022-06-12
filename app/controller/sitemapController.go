@@ -105,6 +105,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 
 		var urlset model.URLSet
+		urlset.Version = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 		loc := os.Getenv("BASE_URL")
 		for _, s := range [...]string{"/", "/posts", "/categories", "/tags", "/sitemap", "/feed"} {
