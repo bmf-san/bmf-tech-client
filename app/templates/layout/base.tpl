@@ -33,20 +33,20 @@
             <nav class="nav sp-hidden">
                 <div class="col-nav">
                     <div class="nav-left">
-                        <a class="nav-link-logo" href="/"><b>bmf-tech</b></a>
+                        <a class="nav-link-logo color-text" href="/"><b>bmf-tech</b></a>
                     </div>
                     <div class="nav-right">
-                        <a class="nav-link" href="/">ホーム</a>
-                        <a class="nav-link" href="/posts">記事</a>
-                        <a class="nav-link" href="/categories">カテゴリ</a>
-                        <a class="nav-link" href="/tags">タグ</a>
+                        <a class="nav-link color-text" href="/">ホーム</a>
+                        <a class="nav-link color-text" href="/posts">記事</a>
+                        <a class="nav-link color-text" href="/categories">カテゴリ</a>
+                        <a class="nav-link color-text" href="/tags">タグ</a>
                     </div>
                 </div>
             </nav>
             <nav class="nav pc-hidden">
                 <div class="col-nav">
                     <div class="nav-left">
-                        <a class="nav-link text-decoration-none">bmf-tech</a>
+                        <a class="nav-link text-decoration-none color-text">bmf-tech</a>
                     </div>
                     <div class="nav-right">
                         <div id="nav-sp-drawer">
@@ -55,10 +55,10 @@
                             <label class="sp-hidden" id="nav-sp-close" for="nav-sp-input"><span></span></label>
                             <div id="nav-sp-content">
                                 <h1>bmf-tech</h1>
-                                <a class="nav-link" href="/">ホーム</a>
-                                <a class="nav-link" href="/posts">記事</a>
-                                <a class="nav-link" href="/categories">カテゴリ</a>
-                                <a class="nav-link" href="/tags">タグ</a>
+                                <a class="nav-link color-text" href="/">ホーム</a>
+                                <a class="nav-link color-text" href="/posts">記事</a>
+                                <a class="nav-link color-text" href="/categories">カテゴリ</a>
+                                <a class="nav-link color-text" href="/tags">タグ</a>
                             </div>
                         </div>
                     </div>
