@@ -3,7 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"encoding/xml"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 
@@ -41,7 +41,7 @@ func (fc *FeedController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fc.Logger.Error(err.Error())
 			fc.Presenter.Error(w, http.StatusInternalServerError)

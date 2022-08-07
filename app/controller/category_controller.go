@@ -2,7 +2,7 @@ package controller
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
@@ -45,7 +45,7 @@ func (cc *CategoryController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			cc.Logger.Error(err.Error())
 			cc.Presenter.Error(w, http.StatusInternalServerError)

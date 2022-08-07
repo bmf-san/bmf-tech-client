@@ -2,7 +2,7 @@ package controller
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
@@ -46,7 +46,7 @@ func (pc *PostController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
 			pc.Presenter.Error(w, http.StatusInternalServerError)
@@ -99,7 +99,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
 			pc.Presenter.Error(w, http.StatusInternalServerError)
@@ -152,7 +152,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
 			pc.Presenter.Error(w, http.StatusInternalServerError)
@@ -200,7 +200,7 @@ func (pc *PostController) Show() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
 			pc.Presenter.Error(w, http.StatusInternalServerError)

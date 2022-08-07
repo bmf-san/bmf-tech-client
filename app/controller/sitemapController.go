@@ -3,7 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"encoding/xml"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 
@@ -41,7 +41,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			si.Logger.Error(err.Error())
 			si.Presenter.Error(w, http.StatusInternalServerError)
@@ -65,7 +65,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err = ioutil.ReadAll(resp.Body)
+		body, err = io.ReadAll(resp.Body)
 		if err != nil {
 			si.Logger.Error(err.Error())
 			si.Presenter.Error(w, http.StatusInternalServerError)
@@ -89,7 +89,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err = ioutil.ReadAll(resp.Body)
+		body, err = io.ReadAll(resp.Body)
 		if err != nil {
 			si.Logger.Error(err.Error())
 			si.Presenter.Error(w, http.StatusInternalServerError)
