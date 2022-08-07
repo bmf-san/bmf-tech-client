@@ -14,7 +14,7 @@
     {{ template "posts" .Posts }}
 	<div class="row">
 		<div class="col text-align-center margin-top-1rem margin-bottom-1rem">
-			<a href="/posts">記事をもっと見る</a>
+			<a class="color-text" href="/posts">記事をもっと見る</a>
 		</div>
 	</div>
 </div>
