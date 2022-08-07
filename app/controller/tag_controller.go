@@ -2,7 +2,7 @@ package controller
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
@@ -31,6 +31,11 @@ func NewTagController(logger *logger.Logger, client *api.Client, presenter *pres
 func (tc *TagController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		page, _, err := tc.Client.GetPageAndLimit(r)
+		if err != nil {
+			tc.Logger.Error(err.Error())
+			tc.Presenter.Error(w, http.StatusInternalServerError)
+			return
+		}
 
 		resp, err := tc.Client.GetTags(page, 100)
 		if err != nil {
@@ -40,7 +45,7 @@ func (tc *TagController) Index() http.Handler {
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			tc.Logger.Error(err.Error())
 			tc.Presenter.Error(w, http.StatusInternalServerError)
