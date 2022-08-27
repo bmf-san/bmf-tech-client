@@ -15,6 +15,7 @@
         </article>
     </div>
 </div>
+{{ end }}
 <div class="row">
     <div class="col">
         <!-- Google Adsense インフィード -->
@@ -23,5 +24,4 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 </div>
-{{ end }}
 {{ end }}
