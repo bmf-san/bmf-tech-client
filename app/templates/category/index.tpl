@@ -14,12 +14,20 @@
     <div class="row">
         <div class="col">
             <ul>
-                {{ range $i, $v := .Categories.Categories }}
-                <li>
-                    <a href="/posts/categories/{{ $v.Name }}">{{ $v.Name }}</a>
-                </li>
-                {{ end }}
+            {{ range $i, $v := .Categories.Categories }}
+            <li>
+                <a href="/posts/categories/{{ $v.Name }}">{{ $v.Name }}</a>
+            </li>
+            {{ end }}
             </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Google Adsense ディスプレイ -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5146230866088201" data-ad-slot="3559376296" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </div>
 </div>
