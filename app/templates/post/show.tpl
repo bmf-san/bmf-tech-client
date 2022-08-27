@@ -20,13 +20,20 @@
             <div class="col">
                 <div class="margin-top-2rem margin-bottom-2rem">
                 {{ range .Post.Post.Tags }}
-                    <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
+                <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
                 {{ end }}
                 </div>
-				<div>
-
+                <div>
                 {{ .Post.Post.HTMLBody | unescape }}
-				</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!-- Google Adsense 記事内 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-5146230866088201" data-ad-slot="5419252877"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
         </div>
     </div>

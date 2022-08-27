@@ -31,4 +31,4 @@ or
 make docker-compose-up-d
 ```
 
-Then go to `bmf-tech-client.local:81`
+Then go to `bmf-tech-client.local:8081`

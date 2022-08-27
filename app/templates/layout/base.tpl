@@ -17,15 +17,6 @@
 
         gtag('config', 'G-784B55NW88');
     </script>
-    <!-- Google Adsense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201"
-        crossorigin="anonymous"></script>
-    <!-- bmf-tech -->
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5146230866088201" data-ad-slot="9196954828"
-        data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </head>
 <body>
     <header>
@@ -90,7 +81,7 @@
             <hr>
             <div class="row text-align-center">
                 <div class="col">
-					<small>©{{ year }} Kenta Takeuchi</small>
+                    <small>©{{ year }} Kenta Takeuchi</small>
                 </div>
             </div>
         </div>
