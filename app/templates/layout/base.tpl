@@ -5,6 +5,7 @@
     <title>bmf-tech.com</title>
     {{ template "meta" .Meta }}
     <link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/styles/monokai.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>

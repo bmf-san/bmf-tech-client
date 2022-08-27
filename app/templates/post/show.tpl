@@ -23,7 +23,7 @@
                 <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
                 {{ end }}
                 </div>
-                <div>
+                <div class="article">
                 {{ .Post.Post.HTMLBody | unescape }}
                 </div>
             </div>
