@@ -39,6 +39,7 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 		"year":      pt.year,
 		"striptags": pt.StripTags,
 		"summary":   pt.Summary,
+		"isAd":      pt.IsAd,
 	}
 	u := os.Getenv("BASE_URL") + "/posts"
 	m := &model.Meta{
@@ -68,6 +69,7 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 		"year":      pt.year,
 		"striptags": pt.StripTags,
 		"summary":   pt.Summary,
+		"isAd":      pt.IsAd,
 	}
 	u := os.Getenv("BASE_URL") + "/posts/categories/" + p.CategoryName
 	m := &model.Meta{
@@ -97,6 +99,7 @@ func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Reques
 		"year":      pt.year,
 		"striptags": pt.StripTags,
 		"summary":   pt.Summary,
+		"isAd":      pt.IsAd,
 	}
 	u := os.Getenv("BASE_URL") + "/posts/tags/" + p.TagName
 	m := &model.Meta{
@@ -125,6 +128,7 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 	fm := template.FuncMap{
 		"year":     pt.year,
 		"unescape": pt.Unescape,
+		"isAd":     pt.IsAd,
 	}
 	s := pt.Summary(pt.StripTags(p.Post.HTMLBody))
 	u := os.Getenv("BASE_URL") + "/" + p.Post.Title

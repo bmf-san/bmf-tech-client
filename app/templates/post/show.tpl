@@ -18,6 +18,16 @@
     <div class="container-readable">
         <div class="row">
             <div class="col">
+                {{ if isAd }}
+                <div>
+                    <!-- Google Adsense インフィード -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146230866088201"
+                    crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gw-3+1f-3d+2z"
+                    data-ad-client="ca-pub-5146230866088201" data-ad-slot="7900864416"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+                {{ end }}
                 <div class="margin-top-2rem margin-bottom-2rem">
                 {{ range .Post.Post.Tags }}
                 <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
