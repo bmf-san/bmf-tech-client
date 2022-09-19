@@ -18,6 +18,7 @@ type CategoryIndex struct {
 func (p *Presenter) ExecuteCategoryIndex(w http.ResponseWriter, r *http.Request, c *CategoryIndex) error {
 	fm := template.FuncMap{
 		"year": p.year,
+		"isAd": p.IsAd,
 	}
 	u := os.Getenv("BASE_URL") + "/categories"
 	m := &model.Meta{

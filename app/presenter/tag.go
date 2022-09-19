@@ -18,6 +18,7 @@ type TagIndex struct {
 func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *TagIndex) error {
 	fm := template.FuncMap{
 		"year": p.year,
+		"isAd": p.IsAd,
 	}
 	u := os.Getenv("BASE_URL") + "/tags"
 	m := &model.Meta{

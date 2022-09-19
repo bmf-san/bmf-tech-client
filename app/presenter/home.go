@@ -14,6 +14,7 @@ func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p 
 		"year":      pt.year,
 		"striptags": pt.StripTags,
 		"summary":   pt.Summary,
+		"isAd":      pt.IsAd,
 	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/home/index.tpl", "templates/partial/posts.tpl"))
 	u := os.Getenv("BASE_URL")
