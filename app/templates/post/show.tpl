@@ -26,8 +26,15 @@
                 <div class="article">
                 {{ .Post.Post.HTMLBody | unescape }}
                 </div>
-                <div class="margin-top-3rem text-align-right">
-                    <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=bmf035-22&linkCode=ur2&linkId=1c71f3af4b958fd5f0a319848e40b1df&camp=247&creative=1211&index=books&keywords={{ .Post.Post.Category.Name }}">関連書籍</a> </div>
+                <div class="margin-top-3rem">
+                    <p>関連書籍</p>
+                    <ul>
+                        {{ range .Post.Post.Tags }}
+                        <li>
+                            <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=bmf035-22&linkCode=ur2&linkId=1c71f3af4b958fd5f0a319848e40b1df&camp=247&creative=1211&index=books&keywords={{ .Name }}">{{ .Name }}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
                 </div>
             </div>
         </div>
