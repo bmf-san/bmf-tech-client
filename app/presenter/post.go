@@ -43,6 +43,7 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 	}
 	u := os.Getenv("BASE_URL") + "/posts"
 	m := &model.Meta{
+		Title:         "bmf-tech.com - 記事一覧",
 		Canonical:     u,
 		Description:   "記事一覧",
 		OGTitle:       "記事一覧",
@@ -73,6 +74,7 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 	}
 	u := os.Getenv("BASE_URL") + "/posts/categories/" + p.CategoryName
 	m := &model.Meta{
+		Title:         "bmf-tech.com - カテゴリ別記事一覧",
 		Canonical:     u,
 		Description:   "カテゴリ別記事一覧：" + p.CategoryName,
 		OGTitle:       "カテゴリ別記事一覧：" + p.CategoryName,
@@ -103,6 +105,7 @@ func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Reques
 	}
 	u := os.Getenv("BASE_URL") + "/posts/tags/" + p.TagName
 	m := &model.Meta{
+		Title:         "bmf-tech.com - タグ別記事一覧",
 		Canonical:     u,
 		Description:   "タグ別記事一覧：" + p.TagName,
 		OGTitle:       "タグ別記事一覧：" + p.TagName,
@@ -133,6 +136,7 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 	s := pt.Summary(pt.StripTags(p.Post.HTMLBody))
 	u := os.Getenv("BASE_URL") + "/" + p.Post.Title
 	m := &model.Meta{
+		Title:         "bmf-tech.com - " + p.Post.Title,
 		Canonical:     u,
 		Description:   s,
 		OGTitle:       p.Post.Title,

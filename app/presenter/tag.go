@@ -22,6 +22,7 @@ func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *T
 	}
 	u := os.Getenv("BASE_URL") + "/tags"
 	m := &model.Meta{
+		Title:         "bmf-tech.com - タグ一覧",
 		Canonical:     u,
 		Description:   "タグ一覧",
 		OGTitle:       "タグ一覧",

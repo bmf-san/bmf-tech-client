@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <title>bmf-tech.com</title>
     {{ template "meta" .Meta }}
+	<link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/styles/monokai.min.css">
