@@ -23,7 +23,10 @@ func (p *Presenter) Error(w http.ResponseWriter, code int) {
 	fm := template.FuncMap{
 		"year": p.year,
 	}
-	m := &model.Meta{NoIndex: true}
+	m := &model.Meta{
+		Title:   "bmf-tech.com - エラー",
+		NoIndex: true,
+	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/error/index.tpl"))
 
 	w.WriteHeader(e.Code)

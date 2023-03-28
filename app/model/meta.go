@@ -2,6 +2,7 @@ package model
 
 // A Meta represents the singular of meta.
 type Meta struct {
+	Title         string
 	Canonical     string
 	Description   string
 	OGTitle       string

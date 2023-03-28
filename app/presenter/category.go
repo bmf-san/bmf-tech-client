@@ -22,6 +22,7 @@ func (p *Presenter) ExecuteCategoryIndex(w http.ResponseWriter, r *http.Request,
 	}
 	u := os.Getenv("BASE_URL") + "/categories"
 	m := &model.Meta{
+		Title:         "bmf-tech.com - カテゴリ一覧",
 		Canonical:     u,
 		Description:   "カテゴリ一覧",
 		OGTitle:       "カテゴリ一覧",
