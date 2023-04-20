@@ -10,11 +10,11 @@ RUN apk update && \
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
-ENV GOARCH=amd64
+ENV GOARCH=${TARGETARCH}
 
 RUN go build -o app
 
-FROM --platform=linux/amd64 alpine
+FROM --platform=$BUILDPLATFORM  alpine
 
 COPY --from=builder /go/bmf-tech-client/app ./
 
