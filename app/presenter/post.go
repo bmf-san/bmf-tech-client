@@ -11,21 +11,28 @@ import (
 // PostIndex is a data for index template.
 type PostIndex struct {
 	Posts      *model.Posts
-	Pagination *model.Pagination
+	Pagination *Pagination
+}
+
+// PostIndexBySearch is a data for index template by search.
+type PostIndexBySearch struct {
+	Keyword    string
+	Posts      *model.Posts
+	Pagination *Pagination
 }
 
 // PostIndexByCategory is a data for index template by category.
 type PostIndexByCategory struct {
 	CategoryName string
 	Posts        *model.Posts
-	Pagination   *model.Pagination
+	Pagination   *Pagination
 }
 
 // PostIndexByTag is a data for index template by tag.
 type PostIndexByTag struct {
 	TagName    string
 	Posts      *model.Posts
-	Pagination *model.Pagination
+	Pagination *Pagination
 }
 
 // PostShow is a data for show template.
@@ -57,7 +64,38 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
-	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/index.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl"))
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/index.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
+	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ExecutePostIndexByKeyword responses a index template by keyword.
+func (pt *Presenter) ExecutePostIndexByKeyword(w http.ResponseWriter, r *http.Request, p *PostIndexBySearch) error {
+	fm := template.FuncMap{
+		"year":      pt.year,
+		"striptags": pt.StripTags,
+		"summary":   pt.Summary,
+		"isAd":      pt.IsAd,
+	}
+	u := os.Getenv("BASE_URL") + "/posts"
+	m := &model.Meta{
+		Title:         "bmf-tech.com - 検索記事一覧",
+		Canonical:     u,
+		Description:   "検索記事一覧：" + p.Keyword,
+		OGTitle:       "検索記事一覧：" + p.Keyword,
+		OGDescription: "検索記事一覧：" + p.Keyword,
+		OGURL:         u,
+		OGType:        "article",
+		OGImage:       "",
+		OGSiteName:    "bmf-tech",
+		OGLocale:      "ja_JP",
+		TwitterCard:   "summary",
+		TwitterSite:   "@bmf_san",
+		NoIndex:       false,
+	}
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/search.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
 		return err
 	}

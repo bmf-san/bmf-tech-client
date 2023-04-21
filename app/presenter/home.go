@@ -16,7 +16,7 @@ func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p 
 		"summary":   pt.Summary,
 		"isAd":      pt.IsAd,
 	}
-	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/home/index.tpl", "templates/partial/posts.tpl"))
+	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/home/index.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
 	u := os.Getenv("BASE_URL")
 	m := &model.Meta{
 		Title:         "bmf-tech.com - ホーム",

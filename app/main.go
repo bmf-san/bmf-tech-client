@@ -65,6 +65,7 @@ func main() {
 
 	r.Methods(http.MethodGet).Handler(`/`, hc.Index())
 	r.Methods(http.MethodGet).Handler(`/posts`, pc.Index())
+	r.Methods(http.MethodGet).Handler(`/posts/search`, pc.IndexByKeyword()) // TODO: ここから
 	r.Methods(http.MethodGet).Handler(`/posts/:title`, pc.Show())
 	r.Methods(http.MethodGet).Handler(`/posts/categories/:name`, pc.IndexByCategory())
 	r.Methods(http.MethodGet).Handler(`/posts/tags/:name`, pc.IndexByTag())
