@@ -48,7 +48,7 @@ jobs:
         default: true
     docker:
       - image: "cimg/go:<< parameters.version >>"
-    working_directory: ~/go/src/github.com/bmf-san/gobel-api
+    working_directory: ~/go/src/github.com/bmf-san/bmf-tech-client
     environment:
       GO111MODULE: "on"
     steps:

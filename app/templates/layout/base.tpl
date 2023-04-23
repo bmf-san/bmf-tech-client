@@ -32,6 +32,7 @@
                         <a class="nav-link color-text" href="/posts">記事</a>
                         <a class="nav-link color-text" href="/categories">カテゴリ</a>
                         <a class="nav-link color-text" href="/tags">タグ</a>
+                        <a class="nav-link color-text" href="/profile">プロフィール</a>
                     </div>
                 </div>
             </nav>
@@ -51,6 +52,7 @@
                                 <a class="nav-link color-text" href="/posts">記事</a>
                                 <a class="nav-link color-text" href="/categories">カテゴリ</a>
                                 <a class="nav-link color-text" href="/tags">タグ</a>
+                                <a class="nav-link color-text" href="/profile">プロフィール</a>
                             </div>
                         </div>
                     </div>
@@ -65,7 +67,7 @@
 
     <footer class="sticky-footer margin-top-2rem">
         <div class="container">
-            <div class="row text-align-center">
+            <div class="row text-align-center" style="margin: 0 auto; max-width: 800px;">
                 <div class="col">
                     <a class="color-text-reverse" href="https://twitter.com/bmf_san">Twitter</a>
                 </div>

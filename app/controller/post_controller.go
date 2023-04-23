@@ -128,7 +128,8 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		}
 
 		if err = pc.Presenter.ExecutePostIndexByKeyword(w, r, &presenter.PostIndexBySearch{
-			Posts: &posts,
+			Keyword: keyword,
+			Posts:   &posts,
 			Pagination: &presenter.Pagination{
 				Pager:       &pagination,
 				QueryParams: template.URL(fmt.Sprintf("keyword=%s", keyword)),
