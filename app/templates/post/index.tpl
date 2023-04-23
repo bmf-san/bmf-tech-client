@@ -11,6 +11,7 @@
 {{ end }}
 {{define "body"}}
 <div class="container-readable margin-top-2rem">
+    {{ template "search" }}
     {{ template "posts" .Posts }}
     {{ template "pagination" .Posts.Pagination }}
 </div>

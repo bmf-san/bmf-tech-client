@@ -11,7 +11,7 @@ import (
 // TagIndex is a data for index template.
 type TagIndex struct {
 	Tags       *model.Tags
-	Pagination *model.Pagination
+	Pagination *Pagination
 }
 
 // ExecuteTagIndex responses a index template.

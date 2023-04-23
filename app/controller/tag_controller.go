@@ -69,8 +69,11 @@ func (tc *TagController) Index() http.Handler {
 		}
 
 		if err = tc.Presenter.ExecuteTagIndex(w, r, &presenter.TagIndex{
-			Tags:       &tags,
-			Pagination: &pagination,
+			Tags: &tags,
+			Pagination: &presenter.Pagination{
+				Pager:       &pagination,
+				QueryParams: "",
+			},
 		}); err != nil {
 			tc.Logger.Error(err.Error())
 			tc.Presenter.Error(w, http.StatusInternalServerError)

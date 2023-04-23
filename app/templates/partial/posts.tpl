@@ -23,5 +23,7 @@
         </article>
     </div>
 </div>
+{{ else }}
+    記事が見つかりませんでした！
 {{ end }}
 {{ end }}

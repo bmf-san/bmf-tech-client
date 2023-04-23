@@ -11,7 +11,7 @@ import (
 // CategoryIndex is a data for index template.
 type CategoryIndex struct {
 	Categories *model.Categories
-	Pagination *model.Pagination
+	Pagination *Pagination
 }
 
 // ExecuteCategoryIndex responses a index template.

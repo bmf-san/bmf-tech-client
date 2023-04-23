@@ -52,6 +52,6 @@ func (p *Presenter) Summary(s string) string {
 
 // IsAd returns a flag indicating whether to output ads.
 func (p *Presenter) IsAd() bool {
-	rand.Seed(time.Now().UnixNano())
-	return rand.Intn(5)%3 == 0
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return r.Intn(5)%3 == 0
 }

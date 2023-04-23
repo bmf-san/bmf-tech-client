@@ -70,7 +70,10 @@ func (cc *CategoryController) Index() http.Handler {
 
 		if err = cc.Presenter.ExecuteCategoryIndex(w, r, &presenter.CategoryIndex{
 			Categories: &categories,
-			Pagination: &pagination,
+			Pagination: &presenter.Pagination{
+				Pager:       &pagination,
+				QueryParams: "",
+			},
 		}); err != nil {
 			cc.Logger.Error(err.Error())
 			cc.Presenter.Error(w, http.StatusInternalServerError)
