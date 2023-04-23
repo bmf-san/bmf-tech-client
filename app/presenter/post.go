@@ -172,7 +172,7 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 		"isAd":     pt.IsAd,
 	}
 	s := pt.Summary(pt.StripTags(p.Post.HTMLBody))
-	u := os.Getenv("BASE_URL") + "/" + p.Post.Title
+	u := os.Getenv("BASE_URL") + "/posts/" + p.Post.Title
 	m := &model.Meta{
 		Title:         "bmf-tech.com - " + p.Post.Title,
 		Canonical:     u,
