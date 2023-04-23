@@ -46,6 +46,7 @@ func main() {
 	tc := controller.NewTagController(logger, client, presenter)
 	// TODO: implement later.
 	// cmc := controller.NewCommentController(logger, client, presenter)
+	pf := controller.NewProfileController(logger, presenter)
 	sc := controller.NewSitemapController(logger, client, presenter)
 	fc := controller.NewFeedController(logger, client, presenter)
 
@@ -56,6 +57,10 @@ func main() {
 	}))
 
 	r.Methods(http.MethodGet).Handler(`/ads.txt`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
+	}))
+
+	r.Methods(http.MethodGet).Handler(`/profile.png`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
@@ -73,6 +78,7 @@ func main() {
 	// r.Methods("/posts/:title/comments").Handler(`/posts/:title/comments`, cc.Store())
 	r.Methods(http.MethodGet).Handler(`/categories`, cc.Index())
 	r.Methods(http.MethodGet).Handler(`/tags`, tc.Index())
+	r.Methods(http.MethodGet).Handler(`/profile`, pf.Index())
 	r.Methods(http.MethodGet).Handler(`/sitemap`, sc.Index())
 	r.Methods(http.MethodGet).Handler(`/feed`, fc.Index())
 

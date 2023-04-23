@@ -81,8 +81,8 @@ func (fc *FeedController) Index() http.Handler {
 		}
 
 		feed := model.Feed{
-			Title:    "Gobel",
-			Subtitle: "Gobel is a headless cms built with golang.",
+			Title:    "bmf-tech.com",
+			Subtitle: "bmf-techはソフトウェアエンジニアであるbmf-sanが日々の技術ネタを投稿するサイトです",
 			Link: model.FeedLink{
 				Href: url,
 			},
