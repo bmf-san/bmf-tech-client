@@ -11,6 +11,8 @@ import (
 	"syscall"
 	"time"
 
+	_ "net/http/pprof"
+
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/controller"
 	"github.com/bmf-san/bmf-tech-client/app/logger"
