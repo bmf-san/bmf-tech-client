@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"time"
 
-	_ "net/http/pprof"
+	"net/http/pprof"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/controller"
@@ -53,6 +53,17 @@ func main() {
 	fc := controller.NewFeedController(logger, client, presenter)
 
 	r := goblin.NewRouter()
+
+	r.Methods(http.MethodGet).Handler("/debug/pprof/", http.HandlerFunc(pprof.Index))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/goroutine", pprof.Handler("goroutine"))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/heap", pprof.Handler("heap"))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/mutex", pprof.Handler("mutex"))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/threadcreate", pprof.Handler("threadcreate"))
+	r.Methods(http.MethodGet).Handler("/debug/pprof/block", pprof.Handler("block"))
 
 	r.Methods(http.MethodGet).Handler(`/favicon.ico`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
