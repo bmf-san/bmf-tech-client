@@ -36,16 +36,27 @@
                 <div class="article">
                 {{ .Post.Post.HTMLBody | unescape }}
                 </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
                 <div class="margin-top-3rem">
-                    <p>関連書籍</p>
+                    <p><u>関連書籍</u></p>
                     <ul>
                         {{ range .Post.Post.Tags }}
                         <li>
-                            <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=bmf035-22&linkCode=ur2&linkId=1c71f3af4b958fd5f0a319848e40b1df&camp=247&creative=1211&index=books&keywords={{ .Name }}">{{ .Name }}</a>
+                            <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=bmf035-22&linkCode=ur2&linkId=1c71f3af4b958fd5f0a319848e40b1df&camp=247&creative=1211&index=books&keywords={{ .Name }}">{{.Name }}</a>
                         </li>
                         {{ end }}
                     </ul>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button style="width:100%" onclick="window.open('https://paypal.me/bmfsan?country.x=JP&locale.x=ja_JP')">bmf-tech.comにお布施する！</button>
             </div>
         </div>
         <div class="row">
