@@ -77,7 +77,11 @@ func main() {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/style.css`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Handler(`/css/style.css`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
+	}))
+
+	r.Methods(http.MethodGet).Handler(`/js/toc.js`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
