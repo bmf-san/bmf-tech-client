@@ -32,7 +32,7 @@
                 {{ range .Post.Post.Tags }}
                 <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
                 {{ end }}
-                <div class="margin-top-4rem">
+                <div class="margin-top-4rem col-toc">
                     <ul id="toc"></ul>
                 </div>
                 </div>
