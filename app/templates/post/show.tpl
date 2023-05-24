@@ -32,11 +32,13 @@
                 {{ range .Post.Post.Tags }}
                 <a class="tag" href="/posts/tags/{{ .Name }}">{{ .Name }}</a>
                 {{ end }}
+                <div class="margin-top-4rem">
+                    <ul id="toc"></ul>
+                </div>
                 </div>
                 <div class="article">
                 {{ .Post.Post.HTMLBody | unescape }}
                 </div>
-
             </div>
         </div>
         <hr>
@@ -69,4 +71,7 @@
         </div>
     </div>
 </section>
+{{ end }}
+{{ define "script" }}
+<script async src="../js/toc.js"></script>
 {{ end }}
