@@ -37,7 +37,8 @@ type PostIndexByTag struct {
 
 // PostShow is a data for show template.
 type PostShow struct {
-	Post *model.Post
+	Post        *model.Post
+	LinkSupport string
 }
 
 // ExecutePostIndex responses a index template.

@@ -49,6 +49,7 @@ func main() {
 	// TODO: implement later.
 	// cmc := controller.NewCommentController(logger, client, presenter)
 	pf := controller.NewProfileController(logger, presenter)
+	sp := controller.NewSupportController(logger, presenter)
 	sc := controller.NewSitemapController(logger, client, presenter)
 	fc := controller.NewFeedController(logger, client, presenter)
 
@@ -96,6 +97,7 @@ func main() {
 	r.Methods(http.MethodGet).Handler(`/categories`, cc.Index())
 	r.Methods(http.MethodGet).Handler(`/tags`, tc.Index())
 	r.Methods(http.MethodGet).Handler(`/profile`, pf.Index())
+	r.Methods(http.MethodGet).Handler(`/support`, sp.Index())
 	r.Methods(http.MethodGet).Handler(`/sitemap`, sc.Index())
 	r.Methods(http.MethodGet).Handler(`/feed`, fc.Index())
 
