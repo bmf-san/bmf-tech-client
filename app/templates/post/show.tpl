@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button style="width:100%" onclick="window.open('https://paypal.me/bmfsan?country.x=JP&locale.x=ja_JP')">bmf-tech.comにお布施する！</button>
+                <button style="width:100%" onclick="window.open({{ .Post.LinkSupport }})">bmf-tech.comをサポートする！</button>
             </div>
         </div>
         <div class="row">

@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/logger"
@@ -285,7 +286,8 @@ func (pc *PostController) Show() http.Handler {
 		}
 
 		if err = pc.Presenter.ExecutePostShow(w, r, &presenter.PostShow{
-			Post: &post,
+			Post:        &post,
+			LinkSupport: os.Getenv("BASE_URL") + "/support",
 		}); err != nil {
 			pc.Logger.Error(err.Error())
 			pc.Presenter.Error(w, http.StatusInternalServerError)
