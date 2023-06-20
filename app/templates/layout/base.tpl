@@ -58,11 +58,26 @@
             </nav>
         </div>
     </header>
-
     {{ template "headline" . }}
-
     {{ template "body" . }}
-
+    <div class="row text-align-center row-sponsored-link">
+        <div class="col">
+            <!-- A8.net -->
+            <a href="https://px.a8.net/svt/ejp?a8mat=3TAZOV+6AU69E+348+1BNYOX" rel="nofollow">
+                <img border="0" width="468" height="60" alt=""
+                    src="https://www26.a8.net/svt/bgt?aid=230620207381&wid=001&eno=01&mid=s00000000404008006000&mc=1"></a>
+            <img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3TAZOV+6AU69E+348+1BNYOX" alt="">:
+        </div>
+    </div>
+    <div class="row text-align-center row-sponsored-link">
+        <div class="col">
+            <!-- A8.net -->
+            <a href="https://px.a8.net/svt/ejp?a8mat=3TAZOU+G3ASDU+50+4Z4H29" rel="nofollow">
+                <img border="0" width="970" height="90" alt=""
+                    src="https://www20.a8.net/svt/bgt?aid=230620206973&wid=001&eno=01&mid=s00000000018030086000&mc=1"></a>
+            <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3TAZOU+G3ASDU+50+4Z4H29" alt="">
+        </div>
+    </div>
     <footer class="sticky-footer margin-top-2rem">
         <div class="container">
             <div class="row text-align-center" style="margin: 0 auto; max-width: 800px;">
