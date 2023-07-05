@@ -38,7 +38,7 @@
             <nav class="nav pc-hidden">
                 <div class="col-nav">
                     <div class="nav-left">
-                        <a class="nav-link text-decoration-none color-text">bmf-tech</a>
+                        <a class="nav-link text-decoration-none color-text" href="/">bmf-tech</a>
                     </div>
                     <div class="nav-right">
                         <div id="nav-sp-drawer">
