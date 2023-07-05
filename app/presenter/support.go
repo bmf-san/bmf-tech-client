@@ -12,6 +12,7 @@ import (
 func (pt *Presenter) ExecuteSupportIndex(w http.ResponseWriter, r *http.Request) error {
 	fm := template.FuncMap{
 		"year": pt.year,
+		"isAd": pt.IsAd,
 	}
 	u := os.Getenv("BASE_URL")
 	m := &model.Meta{
