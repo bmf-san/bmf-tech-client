@@ -36,12 +36,16 @@
                                 <td>bmf.infomation@gmail.com</td>
                             </tr>
                             <tr>
-                                <td>GitHub</td>
-                                <td><a href="https://github.com/bmf-san">bmf-san</a></td>
-                            </tr>
-                            <tr>
                                 <td>Twitter</td>
                                 <td><a href="https://twitter.com/bmf_san">bmf_san</a></td>
+                            </tr>
+                            <tr>
+                                <td>LinkedIn</td>
+                                <td><a href="www.linkedin.com/in/bmf-san">bmf-san</a></td>
+                            </tr>
+                            <tr>
+                                <td>GitHub</td>
+                                <td><a href="https://github.com/bmf-san">bmf-san</a></td>
                             </tr>
                             <tr>
                                 <td>DEV</td>
@@ -63,18 +67,55 @@
                                 <td>HackerRank</td>
                                 <td><a href="https://www.hackerrank.com/bmf_san">bmf_san</a></td>
                             </tr>
+                            <tr>
+                                <td>LeetCode</td>
+                                <td><a href="https://leetcode.com/bmf-san/">bmf-san</a></td>
+                            </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="margin-top-3rem">
+                    <h2>経歴</h2>
+                    <p><em>株式会社マクアケ/ソフトウェアエンジニア</em><br><span class="font-size-small">2018-現在</span></p>
+                    <p class="font-size-small">自社サービスの開発に従事するソフトウェアエンジニアとしてユーザー向けの新機能開発・機能改善、サービス基盤開発・運用など幅広く経験を重ねています。リードエンジニアとして、チームやプロジェクトのマネジメントや採用活動などにも関わっています。サービスや組織の成長のためにどんな貢献ができるかということを強く意識するようになりました。</p>
+                    <br>
+                    <p><em>株式会社イノベーター・ジャパン/ソフトウェアエンジニア</em><br><span class="font-size-small">2017-2018</span></p>
+                    <p class="font-size-small">受託と自社サービスの両方の開発に携わりました。ソフトウェアエンジニアとして初めてチームで仕事をすることを学びました。</p>
+                    <br>
+                    <p><em>某スタートアップ/ソフトウェアエンジニア</em><br><span class="font-size-small">2016-2017</span></p>
+                    <p class="font-size-small">プロダクトの価値をスピーディーに提供することを重視してソフトウェアエンジニアとしての最初のキャリアをスタートさせました。デザインや機能へのこだわり、妥協しない姿勢、数字への意識が身につきました。</p>
+                    <br>
+                    <p><em>フリーランス/マークアップエンジニア</em><br><span class="font-size-small">2015-2016</span></p>
+                    <p class="font-size-small">WordpressのコーディングやWebデザインをやっていました。受託の仕事を探して営業したこともありました。手に職をつける大変さを学びました。</p>
+                </div>
+                <div class="margin-top-3rem">
+                    <h2>資格</h2>
+                    <p><span>2023</span> <em>Google Cloud Certified Associate Cloud Engineer</em></p>
+                    <p><span>2022</span> <em>Registerd Scrum Master（LSM）</em></p>
+                    <p><span>2021</span> <em>AWS Certified Solutions Architect – Associate</em></p>
+                    <p><span>2016</span> <em>Webデザイン技能検定2級</em></p>
+                </div>
+                <div class="margin-top-3rem">
+                    <h2>書籍</h2>
+                    <p><a href="https://zenn.dev/books/3f41c5cd34ec3f" target="_blank">net/httpでつくるHTTPルーター自作入門</a><br><span class="font-size-small">2022</span></p>
+                    <p class="font-size-small">Goで開発したHTTPルーターの知見を元に、標準パッケージのみでHTTPルーターを実装する流れを本にしました。</p>
+                </div>
+                <div class="margin-top-3rem">
+                    <h2>登壇</h2>
+					<p>全ての登壇資料は<a href="http://speakerdeck.com/bmf_san" target="_blank">Speaker Deck</a>に掲載しています。</p>
+                    <p><em><span>Go Conference 2021 Autumn</span></em><br><a href="https://speakerdeck.com/bmf_san/httpdetukuruhttprutazi-zuo-ru-men" target="_blank">net/httpでつくるHTTPルーター自作入門</a></p>
+                    <p><em><span>Laravel JP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">Laravel で始めるテスト生活</a></p>
+                    <p><em><span>PHPerKaigi 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">URLルーティングをつくる</a></p>
+                    <p><em><span>Japan PHP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/phpdeurlruteinguwozi-zuo-suru" target="_blank">PHP で URL ルーティングを自作する</a></p>
+                    <p><em><span>Japan PHP Conference 2018</span></em><br><a href="https://speakerdeck.com/bmf_san/20dai-gakao-eruenziniakiyarialun" target="_blank">20 代が考えるエンジニアキャリア論</a></p>
+                    <p><em><span>Japan PHP Conference 2017</span></em><br><a href="https://speakerdeck.com/bmf_san/3nian-mu-enziniaosswohazimeru" target="_blank">3年目エンジニアOSSをはじめる</a></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row margin-bottom-2rem">
         <div class="col">
-                <p>
-                ブログや仕事に関するお問い合わせ等は下記よりお問い合わせください。<br>
-                ※返信を約束するものではないことをご了承ください。
-                </p>
+                <p>ブログや仕事に関するお問い合わせ等は下記よりお問い合わせください。<br>※返信を約束するものではないことをご了承ください。</p>
                 <div>
                     <button style="width:100%" onclick="window.open('https://forms.gle/zZamAmNEtHZGnwZY6')">お問い合わせ</button>
                 </div>
