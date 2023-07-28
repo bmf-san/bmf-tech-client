@@ -13,7 +13,7 @@
 <div class="container-readable margin-top-2rem">
     <div class="row margin-bottom-2rem">
         <div class="col">
-            <p>bmf-tech.comへサポートして頂ける方は下記からお願いします！<br>頂いたサポートはbmf-tech.comの運営コストに充てたり、<a href="https://twitter.com/bmf_san">bmf_san</a>の技術研鑽に生かされます。</p>
+            <p>bmf-tech.comへサポートして頂ける方は下記からお願いします！<br>頂いたサポートはbmf-tech.comの運営費用に充てたり、<a href="https://twitter.com/bmf_san">bmf_san</a>の技術研鑽に最大限活かします。</p>
             <table class="margin-top-2rem">
                 <thead>
                     <tr>
