@@ -96,6 +96,8 @@
             <hr>
             <div class="row text-align-center">
                 <div class="col">
+                    <small>bmf-tech.comではサイトの運営費やbmf-sanの技術研鑽のために広告の運用を行っています。</small>
+                    <br>
                     <small>©{{ year }} Kenta Takeuchi</small>
                 </div>
             </div>
