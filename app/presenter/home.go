@@ -21,9 +21,9 @@ func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p 
 	m := &model.Meta{
 		Title:         "bmf-tech.com - ホーム",
 		Canonical:     u,
-		Description:   "bmf-tech",
-		OGTitle:       "bmf-tech",
-		OGDescription: "bmf-techはソフトウェアエンジニアであるbmf-sanが日々の技術ネタを投稿するサイトです。",
+		Description:   "bmf-tech.comはソフトウェアエンジニアであるbmf-sanが日々の技術ネタを投稿するサイトです。",
+		OGTitle:       "bmf-tech.com - ホーム",
+		OGDescription: "bmf-tech.comはソフトウェアエンジニアであるbmf-sanが日々の技術ネタを投稿するサイトです。",
 		OGURL:         u,
 		OGType:        "website",
 		OGImage:       "",

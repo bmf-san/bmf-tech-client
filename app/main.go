@@ -52,6 +52,7 @@ func main() {
 	sp := controller.NewSupportController(logger, presenter)
 	sc := controller.NewSitemapController(logger, client, presenter)
 	fc := controller.NewFeedController(logger, client, presenter)
+	pp := controller.NewPrivacyPolicyController(logger, presenter)
 
 	r := goblin.NewRouter()
 
@@ -100,6 +101,7 @@ func main() {
 	r.Methods(http.MethodGet).Handler(`/support`, sp.Index())
 	r.Methods(http.MethodGet).Handler(`/sitemap`, sc.Index())
 	r.Methods(http.MethodGet).Handler(`/feed`, fc.Index())
+	r.Methods(http.MethodGet).Handler(`/privacy_policy`, pp.Index())
 
 	s := http.Server{
 		Addr:    ":" + os.Getenv("SERVER_PORT"),

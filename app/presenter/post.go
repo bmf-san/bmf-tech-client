@@ -53,9 +53,9 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 	m := &model.Meta{
 		Title:         "bmf-tech.com - 記事一覧",
 		Canonical:     u,
-		Description:   "記事一覧",
-		OGTitle:       "記事一覧",
-		OGDescription: "記事一覧",
+		Description:   "bmf-tech.comの記事一覧ページです。",
+		OGTitle:       "bmf-tech.com - 記事一覧",
+		OGDescription: "bmf-tech.comの記事一覧ページです。",
 		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
