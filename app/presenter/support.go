@@ -18,9 +18,9 @@ func (pt *Presenter) ExecuteSupportIndex(w http.ResponseWriter, r *http.Request)
 	m := &model.Meta{
 		Title:         "bmf-tech.com - サポート",
 		Canonical:     u,
-		Description:   "bmf-tech",
-		OGTitle:       "bmf-tech",
-		OGDescription: "bmf-sanへのサポートはこちら。",
+		Description:   "bmf-tech.comのサポートページです。",
+		OGTitle:       "bmf-tech.com - サポート",
+		OGDescription: "bmf-tech.comのサポートページです。",
 		OGURL:         u,
 		OGType:        "website",
 		OGImage:       "",

@@ -18,9 +18,9 @@ func (pt *Presenter) ExecuteProfileIndex(w http.ResponseWriter, r *http.Request)
 	m := &model.Meta{
 		Title:         "bmf-tech.com - プロフィール",
 		Canonical:     u,
-		Description:   "bmf-tech",
-		OGTitle:       "bmf-tech",
-		OGDescription: "bmf-sanのプロフィールです。",
+		Description:   "bmf-tech.comのプロフィールページです。",
+		OGTitle:       "bmf-tech.com - プロフィール",
+		OGDescription: "bmf-tech.comのプロフィールページです。",
 		OGURL:         u,
 		OGType:        "website",
 		OGImage:       "",

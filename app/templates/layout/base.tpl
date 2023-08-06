@@ -79,7 +79,7 @@
     </div>
     <footer class="sticky-footer margin-top-2rem">
         <div class="container">
-            <div class="row text-align-center" style="margin: 0 auto; max-width: 800px;">
+            <div class="row text-align-center font-size-small">
                 <div class="col">
                     <a class="color-text-reverse" href="https://twitter.com/bmf_san">Twitter</a>
                 </div>
@@ -87,10 +87,19 @@
                     <a class="color-text-reverse" href="https://github.com/bmf-san">Github</a>
                 </div>
                 <div class="col">
-                    <a class="color-text-reverse" href="/sitemap">Sitemap</a>
+                    <a class="color-text-reverse" href="/sitemap">サイトマップ</a>
                 </div>
                 <div class="col">
-                    <a class="color-text-reverse" href="/feed">Feed</a>
+                    <a class="color-text-reverse" href="/feed">フィード</a>
+                </div>
+                <div class="col">
+                    <a class="color-text-reverse" href="/support">サポート</a>
+                </div>
+                <div class="col">
+                    <a class="color-text-reverse" href="https://forms.gle/zZamAmNEtHZGnwZY6">お問い合わせ</a>
+                </div>
+                <div class="col">
+                    <a class="color-text-reverse" href="/privacy_policy">プライバシーポリシー</a>
                 </div>
             </div>
             <hr>

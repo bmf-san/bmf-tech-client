@@ -24,9 +24,9 @@ func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *T
 	m := &model.Meta{
 		Title:         "bmf-tech.com - タグ一覧",
 		Canonical:     u,
-		Description:   "タグ一覧",
-		OGTitle:       "タグ一覧",
-		OGDescription: "タグ一覧",
+		Description:   "bmf-tech.comのタグ一覧ページです。",
+		OGTitle:       "bmf-tech.com - タグ一覧",
+		OGDescription: "bmf-tech.comのタグ一覧ページです。",
 		OGURL:         u,
 		OGType:        "article",
 		OGImage:       "",
