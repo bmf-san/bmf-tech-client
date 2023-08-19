@@ -52,7 +52,6 @@ func (fc *FeedController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			fc.Logger.Error(err.Error())
-			fc.Logger.Error(string(body))
 			fc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}

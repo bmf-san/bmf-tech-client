@@ -56,7 +56,6 @@ func (tc *TagController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &tags); err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Logger.Error(string(body))
 			tc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}

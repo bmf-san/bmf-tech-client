@@ -32,7 +32,6 @@ func (c *Client) GetPosts(page int, limit int) (*http.Response, error) {
 // GetPostsByKeyword requests posts by keyword.
 func (c *Client) GetPostsByKeyword(keyword string, page int, limit int) (*http.Response, error) {
 	resp, err := c.Do(http.MethodGet, getPostsBySearchPath, map[string]string{"keyword": keyword, "page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
-	fmt.Printf("%#v\n", resp.Request.URL)
 	if err != nil {
 		return nil, err
 	}
