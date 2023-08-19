@@ -51,7 +51,6 @@ func (si *SitemapController) Index() http.Handler {
 		var posts model.Posts
 		if err = json.Unmarshal(body, &posts); err != nil {
 			si.Logger.Error(err.Error())
-			si.Logger.Error(string(body))
 			si.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
@@ -75,7 +74,6 @@ func (si *SitemapController) Index() http.Handler {
 		var categories model.Categories
 		if err = json.Unmarshal(body, &categories); err != nil {
 			si.Logger.Error(err.Error())
-			si.Logger.Error(string(body))
 			si.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
@@ -99,7 +97,6 @@ func (si *SitemapController) Index() http.Handler {
 		var tags model.Tags
 		if err = json.Unmarshal(body, &tags); err != nil {
 			si.Logger.Error(err.Error())
-			si.Logger.Error(string(body))
 			si.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}

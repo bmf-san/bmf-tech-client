@@ -60,7 +60,6 @@ func (pc *PostController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Logger.Error(string(body))
 			pc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
@@ -116,7 +115,6 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Logger.Error(string(body))
 			pc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
@@ -229,7 +227,6 @@ func (pc *PostController) IndexByTag() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Logger.Error(string(body))
 			pc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
@@ -280,7 +277,6 @@ func (pc *PostController) Show() http.Handler {
 
 		if err := json.Unmarshal(body, &post); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Logger.Error(string(body))
 			pc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}

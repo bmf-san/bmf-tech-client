@@ -56,7 +56,6 @@ func (hc *HomeController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Logger.Error(string(body))
 			hc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}

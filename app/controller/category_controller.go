@@ -56,7 +56,6 @@ func (cc *CategoryController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &categories); err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Logger.Error(string(body))
 			cc.Presenter.Error(w, http.StatusInternalServerError)
 			return
 		}
