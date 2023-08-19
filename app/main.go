@@ -16,6 +16,7 @@ import (
 	"github.com/bmf-san/bmf-tech-client/app/api"
 	"github.com/bmf-san/bmf-tech-client/app/controller"
 	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/middleware"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 	"github.com/bmf-san/goblin"
 )
@@ -41,6 +42,7 @@ func main() {
 
 	client := api.NewClient()
 	presenter := presenter.NewPresenter(templates)
+	mw := middleware.NewMiddleware(logger, presenter)
 
 	hc := controller.NewHomeController(logger, client, presenter)
 	pc := controller.NewPostController(logger, client, presenter)
@@ -56,52 +58,52 @@ func main() {
 
 	r := goblin.NewRouter()
 
-	r.Methods(http.MethodGet).Handler("/debug/pprof/", http.HandlerFunc(pprof.Index))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/goroutine", pprof.Handler("goroutine"))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/heap", pprof.Handler("heap"))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/mutex", pprof.Handler("mutex"))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/threadcreate", pprof.Handler("threadcreate"))
-	r.Methods(http.MethodGet).Handler("/debug/pprof/block", pprof.Handler("block"))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/", http.HandlerFunc(pprof.Index))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/goroutine", pprof.Handler("goroutine"))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/heap", pprof.Handler("heap"))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/mutex", pprof.Handler("mutex"))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/threadcreate", pprof.Handler("threadcreate"))
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler("/debug/pprof/block", pprof.Handler("block"))
 
-	r.Methods(http.MethodGet).Handler(`/favicon.ico`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/favicon.ico`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/ads.txt`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/ads.txt`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/profile.png`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/profile.png`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/css/style.css`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/css/style.css`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/js/toc.js`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/js/toc.js`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Handler(`/`, hc.Index())
-	r.Methods(http.MethodGet).Handler(`/posts`, pc.Index())
-	r.Methods(http.MethodGet).Handler(`/posts/search`, pc.IndexByKeyword())
-	r.Methods(http.MethodGet).Handler(`/posts/:title`, pc.Show())
-	r.Methods(http.MethodGet).Handler(`/posts/categories/:name`, pc.IndexByCategory())
-	r.Methods(http.MethodGet).Handler(`/posts/tags/:name`, pc.IndexByTag())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/`, hc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/posts`, pc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/posts/search`, pc.IndexByKeyword())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/posts/:title`, pc.Show())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/posts/categories/:name`, pc.IndexByCategory())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/posts/tags/:name`, pc.IndexByTag())
 	// TODO: implement later.
-	// r.Methods("/posts/:title/comments").Handler(`/posts/:title/comments`, cc.Store())
-	r.Methods(http.MethodGet).Handler(`/categories`, cc.Index())
-	r.Methods(http.MethodGet).Handler(`/tags`, tc.Index())
-	r.Methods(http.MethodGet).Handler(`/profile`, pf.Index())
-	r.Methods(http.MethodGet).Handler(`/support`, sp.Index())
-	r.Methods(http.MethodGet).Handler(`/sitemap`, sc.Index())
-	r.Methods(http.MethodGet).Handler(`/feed`, fc.Index())
-	r.Methods(http.MethodGet).Handler(`/privacy_policy`, pp.Index())
+	// r.Methods("/posts/:title/comments").Use(mw.Recovery).Handler(`/posts/:title/comments`, cc.Store())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/categories`, cc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/tags`, tc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/profile`, pf.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/support`, sp.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/sitemap`, sc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/feed`, fc.Index())
+	r.Methods(http.MethodGet).Use(mw.Recovery).Handler(`/privacy_policy`, pp.Index())
 
 	s := http.Server{
 		Addr:    ":" + os.Getenv("SERVER_PORT"),
