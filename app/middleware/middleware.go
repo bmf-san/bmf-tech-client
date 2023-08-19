@@ -1,61 +1,54 @@
 // TODO: Implement csrf
 package middleware
 
-// import (
-// 	"context"
-// 	"net/http"
+import (
+	"net/http"
+	"runtime"
 
-// 	"github.com/bmf-san/gobel-admin-client/app/cookie"
-// 	"github.com/bmf-san/gobel-admin-client/app/logger"
-// 	"github.com/bmf-san/gobel-admin-client/app/response"
-// 	"github.com/bmf-san/gobel-admin-client/app/session"
-// )
+	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"github.com/bmf-san/bmf-tech-client/app/presenter"
+)
 
+// Middelware represents the singular of middleware.
+type Middleware struct {
+	logger    *logger.Logger
+	presenter *presenter.Presenter
+}
+
+// NewMiddleware creates a middleware.
+func NewMiddleware(l *logger.Logger, p *presenter.Presenter) *Middleware {
+	return &Middleware{
+		logger:    l,
+		presenter: p,
+	}
+}
+
+// Recovery is a middleware for recovering from panic.
+func (mw *Middleware) Recovery(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			if err := recover(); err != nil {
+				switch e := err.(type) {
+				case string:
+					mw.logger.Error("[panic]" + e)
+				case runtime.Error:
+					mw.logger.Error("[panic] " + e.Error())
+				case error:
+					mw.logger.Error("[panic] " + e.Error())
+				default:
+					mw.logger.Error("[panic] " + e.(string))
+				}
+				mw.presenter.Error(w, http.StatusInternalServerError)
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
+}
+
+// TODO: Implement later
 // const (
 // 	ctxCSRFToken = "csrf-token"
 // )
-
-// // middelware represents the singular of middleware.
-// type middleware func(http.HandlerFunc) http.HandlerFunc
-
-// // Middlewares represents the plural of middleware.
-// type Middlewares struct {
-// 	middlewares []middleware
-// }
-
-// // Asset represents the plural of middelware services.
-// type Asset struct {
-// 	redisHandler *session.RedisHandler
-// 	logger       *logger.Logger
-// 	cookie       *cookie.Cookie
-// 	response     *response.Response
-// }
-
-// // NewAsset creates a templates.
-// func NewAsset(redisHandler *session.RedisHandler, logger *logger.Logger, cookie *cookie.Cookie, presenter *presenter.Presenter) Asset {
-// 	return Asset{
-// 		redisHandler: redisHandler,
-// 		logger:       logger,
-// 		cookie:       cookie,
-// 		response:     response,
-// 	}
-// }
-
-// // NewMiddlewares creates a middlewares.
-// func NewMiddlewares(mws ...middleware) Middlewares {
-// 	return Middlewares{
-// 		middlewares: append([]middleware(nil), mws...),
-// 	}
-// }
-
-// // Then handles chaining middlewares.
-// func (mws Middlewares) Then(h http.HandlerFunc) http.HandlerFunc {
-// 	for i := range mws.middlewares {
-// 		h = mws.middlewares[len(mws.middlewares)-1-i](h)
-// 	}
-
-// 	return h
-// }
 
 // // CSRF is a middelware for CSRF.
 // func (a *Asset) CSRF(next http.HandlerFunc) http.HandlerFunc {
