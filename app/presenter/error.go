@@ -22,6 +22,7 @@ func (p *Presenter) Error(w http.ResponseWriter, code int) {
 
 	fm := template.FuncMap{
 		"year": p.year,
+		"isAd": p.IsAd,
 	}
 	m := &model.Meta{
 		Title:   "bmf-tech.com - エラー",
