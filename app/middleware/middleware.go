@@ -5,18 +5,19 @@ import (
 	"net/http"
 	"runtime"
 
-	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // Middelware represents the singular of middleware.
 type Middleware struct {
-	logger    *logger.Logger
+	logger    *slog.Logger
 	presenter *presenter.Presenter
 }
 
 // NewMiddleware creates a middleware.
-func NewMiddleware(l *logger.Logger, p *presenter.Presenter) *Middleware {
+func NewMiddleware(l *slog.Logger, p *presenter.Presenter) *Middleware {
 	return &Middleware{
 		logger:    l,
 		presenter: p,

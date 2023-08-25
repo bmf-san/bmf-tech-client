@@ -8,8 +8,9 @@ import (
 	"net/http"
 	"os"
 
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/api"
-	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 	"github.com/bmf-san/goblin"
@@ -17,13 +18,13 @@ import (
 
 // A PostController is a controller for a post.
 type PostController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewPostController creates a NewPostController.
-func NewPostController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *PostController {
+func NewPostController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *PostController {
 	return &PostController{
 		Logger:    logger,
 		Client:    client,
