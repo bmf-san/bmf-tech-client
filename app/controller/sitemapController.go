@@ -7,21 +7,22 @@ import (
 	"net/http"
 	"os"
 
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/api"
-	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A SitemapController is a controller for a sitemap.
 type SitemapController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewSitemapController creates a SitemapController.
-func NewSitemapController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *SitemapController {
+func NewSitemapController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *SitemapController {
 	return &SitemapController{
 		Logger:    logger,
 		Client:    client,

@@ -3,23 +3,23 @@ package controller
 import (
 	"encoding/json"
 	"io"
+	"log/slog"
 	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
-	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A TagController is a controller for a tag.
 type TagController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewTagController creates a TagController.
-func NewTagController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *TagController {
+func NewTagController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *TagController {
 	return &TagController{
 		Logger:    logger,
 		Client:    client,

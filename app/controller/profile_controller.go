@@ -3,18 +3,19 @@ package controller
 import (
 	"net/http"
 
-	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A ProfileController is a controller for a profile.
 type ProfileController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Presenter *presenter.Presenter
 }
 
 // NewProfileController creates a ProfileController.
-func NewProfileController(logger *logger.Logger, presenter *presenter.Presenter) *ProfileController {
+func NewProfileController(logger *slog.Logger, presenter *presenter.Presenter) *ProfileController {
 	return &ProfileController{
 		Logger:    logger,
 		Presenter: presenter,

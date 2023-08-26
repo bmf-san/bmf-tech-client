@@ -5,21 +5,22 @@ import (
 	"io"
 	"net/http"
 
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/api"
-	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A CategoryController is a controller for category.
 type CategoryController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewCategoryController creates a CategoryController.
-func NewCategoryController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *CategoryController {
+func NewCategoryController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *CategoryController {
 	return &CategoryController{
 		Logger:    logger,
 		Client:    client,

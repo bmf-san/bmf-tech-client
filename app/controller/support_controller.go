@@ -3,18 +3,19 @@ package controller
 import (
 	"net/http"
 
-	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A SupportController is a controller for a support.
 type SupportController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Presenter *presenter.Presenter
 }
 
 // NewSupportController creates a SupportController.
-func NewSupportController(logger *logger.Logger, presenter *presenter.Presenter) *SupportController {
+func NewSupportController(logger *slog.Logger, presenter *presenter.Presenter) *SupportController {
 	return &SupportController{
 		Logger:    logger,
 		Presenter: presenter,

@@ -5,21 +5,22 @@ import (
 	"io"
 	"net/http"
 
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/api"
-	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A HomeController is a controller for a home.
 type HomeController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewHomeController creates a HomeController.
-func NewHomeController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *HomeController {
+func NewHomeController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *HomeController {
 	return &HomeController{
 		Logger:    logger,
 		Client:    client,

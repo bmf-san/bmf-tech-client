@@ -3,18 +3,19 @@ package controller
 import (
 	"net/http"
 
-	"github.com/bmf-san/bmf-tech-client/app/logger"
+	"log/slog"
+
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A PrivacyPolicyController is a controller for a privacy policy.
 type PrivacyPolicyController struct {
-	Logger    *logger.Logger
+	Logger    *slog.Logger
 	Presenter *presenter.Presenter
 }
 
 // NewPrivacyPolicyController creates a PrivacyPolicyController.
-func NewPrivacyPolicyController(logger *logger.Logger, presenter *presenter.Presenter) *PrivacyPolicyController {
+func NewPrivacyPolicyController(logger *slog.Logger, presenter *presenter.Presenter) *PrivacyPolicyController {
 	return &PrivacyPolicyController{
 		Logger:    logger,
 		Presenter: presenter,
