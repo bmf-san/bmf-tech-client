@@ -40,6 +40,7 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 					mw.logger.Error("[panic] " + e.(string))
 				}
 				mw.presenter.Error(w, http.StatusInternalServerError)
+				return
 			}
 		}()
 		next.ServeHTTP(w, r)
