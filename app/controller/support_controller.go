@@ -23,11 +23,14 @@ func NewSupportController(logger *slog.Logger, presenter *presenter.Presenter) *
 }
 
 // Index displays a listing of the resource.
-func (hc *SupportController) Index() http.Handler {
+func (sc *SupportController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if err := hc.Presenter.ExecuteSupportIndex(w, r); err != nil {
-			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+		if err := sc.Presenter.ExecuteSupportIndex(w, r); err != nil {
+			sc.Logger.Error(err.Error())
+			if err := sc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				sc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

@@ -39,7 +39,10 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 				default:
 					mw.logger.Error("[panic] " + e.(string))
 				}
-				mw.presenter.Error(w, http.StatusInternalServerError)
+				if err := mw.presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+					mw.logger.Error(err.Error())
+					w.Write([]byte(err.Error()))
+				}
 				return
 			}
 		}()

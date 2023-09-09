@@ -23,11 +23,14 @@ func NewPrivacyPolicyController(logger *slog.Logger, presenter *presenter.Presen
 }
 
 // Index displays a listing of the resource.
-func (hc *PrivacyPolicyController) Index() http.Handler {
+func (pc *PrivacyPolicyController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if err := hc.Presenter.ExecutePrivacyPolicyIndex(w, r); err != nil {
-			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+		if err := pc.Presenter.ExecutePrivacyPolicyIndex(w, r); err != nil {
+			pc.Logger.Error(err.Error())
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

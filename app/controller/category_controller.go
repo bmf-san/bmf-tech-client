@@ -34,14 +34,20 @@ func (cc *CategoryController) Index() http.Handler {
 		page, _, err := cc.Client.GetPageAndLimit(r)
 		if err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		resp, err := cc.Client.GetCategories(page, 100)
 		if err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -49,7 +55,10 @@ func (cc *CategoryController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -57,14 +66,20 @@ func (cc *CategoryController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &categories); err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -76,7 +91,10 @@ func (cc *CategoryController) Index() http.Handler {
 			},
 		}); err != nil {
 			cc.Logger.Error(err.Error())
-			cc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				cc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

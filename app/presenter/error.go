@@ -1,6 +1,7 @@
 package presenter
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 
@@ -13,13 +14,12 @@ type ErrorData struct {
 	Message string
 }
 
-// Error responses a error template.
-func (p *Presenter) Error(w http.ResponseWriter, code int) {
+// ExecuteError responses a error template.
+func (p *Presenter) ExecuteError(w http.ResponseWriter, code int) error {
 	e := &ErrorData{
 		Code:    code,
 		Message: handleErrorMessage(code),
 	}
-
 	fm := template.FuncMap{
 		"year": p.year,
 		"isAd": p.IsAd,
@@ -30,11 +30,18 @@ func (p *Presenter) Error(w http.ResponseWriter, code int) {
 	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/error/index.tpl"))
 
+	var buf bytes.Buffer
+	if err := tpl.ExecuteTemplate(&buf, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
+		return err
+	}
+
 	w.WriteHeader(e.Code)
 
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
-		w.Write([]byte(err.Error()))
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
 	}
+
+	return nil
 }
 
 // handleErrorMessage handles an error message by code.
