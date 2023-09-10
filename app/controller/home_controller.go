@@ -34,14 +34,20 @@ func (hc *HomeController) Index() http.Handler {
 		page, limit, err := hc.Client.GetPageAndLimit(r)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				hc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		resp, err := hc.Client.GetPosts(page, limit)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				hc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -49,7 +55,10 @@ func (hc *HomeController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				hc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -57,7 +66,10 @@ func (hc *HomeController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				hc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -65,7 +77,10 @@ func (hc *HomeController) Index() http.Handler {
 			Posts: &posts,
 		}); err != nil {
 			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				hc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

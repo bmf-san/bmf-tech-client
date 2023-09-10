@@ -38,14 +38,20 @@ func (pc *PostController) Index() http.Handler {
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		resp, err := pc.Client.GetPosts(page, limit)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -53,7 +59,10 @@ func (pc *PostController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -61,14 +70,20 @@ func (pc *PostController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -80,7 +95,10 @@ func (pc *PostController) Index() http.Handler {
 			},
 		}); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})
@@ -92,7 +110,10 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -100,7 +121,10 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		resp, err := pc.Client.GetPostsByKeyword(keyword, page, limit)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -108,7 +132,10 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -116,14 +143,20 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -136,7 +169,10 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			},
 		}); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})
@@ -148,7 +184,10 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -156,7 +195,10 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		resp, err := pc.Client.GetPostsByCategory(name, page, limit)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -164,7 +206,10 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -172,14 +217,20 @@ func (pc *PostController) IndexByCategory() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -192,7 +243,10 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			},
 		}); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})
@@ -204,7 +258,10 @@ func (pc *PostController) IndexByTag() http.Handler {
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -212,7 +269,10 @@ func (pc *PostController) IndexByTag() http.Handler {
 		resp, err := pc.Client.GetPostsByTag(name, page, limit)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -220,7 +280,10 @@ func (pc *PostController) IndexByTag() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -228,14 +291,20 @@ func (pc *PostController) IndexByTag() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -248,7 +317,10 @@ func (pc *PostController) IndexByTag() http.Handler {
 			},
 		}); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})
@@ -262,7 +334,10 @@ func (pc *PostController) Show() http.Handler {
 		resp, err := pc.Client.GetPost(title)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -270,7 +345,10 @@ func (pc *PostController) Show() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -278,7 +356,10 @@ func (pc *PostController) Show() http.Handler {
 
 		if err := json.Unmarshal(body, &post); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -287,7 +368,10 @@ func (pc *PostController) Show() http.Handler {
 			LinkSupport: os.Getenv("BASE_URL") + "/support",
 		}); err != nil {
 			pc.Logger.Error(err.Error())
-			pc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

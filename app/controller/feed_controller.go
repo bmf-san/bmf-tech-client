@@ -37,7 +37,10 @@ func (fc *FeedController) Index() http.Handler {
 		resp, err := fc.Client.GetPosts(1, 99999)
 		if err != nil {
 			fc.Logger.Error(err.Error())
-			fc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				fc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -45,7 +48,10 @@ func (fc *FeedController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fc.Logger.Error(err.Error())
-			fc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				fc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -53,7 +59,10 @@ func (fc *FeedController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			fc.Logger.Error(err.Error())
-			fc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				fc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 

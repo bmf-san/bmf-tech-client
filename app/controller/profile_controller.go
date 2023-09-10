@@ -23,11 +23,14 @@ func NewProfileController(logger *slog.Logger, presenter *presenter.Presenter) *
 }
 
 // Index displays a listing of the resource.
-func (hc *ProfileController) Index() http.Handler {
+func (pc *ProfileController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if err := hc.Presenter.ExecuteProfileIndex(w, r); err != nil {
-			hc.Logger.Error(err.Error())
-			hc.Presenter.Error(w, http.StatusInternalServerError)
+		if err := pc.Presenter.ExecuteProfileIndex(w, r); err != nil {
+			pc.Logger.Error(err.Error())
+			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				pc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})

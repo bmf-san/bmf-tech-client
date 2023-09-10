@@ -33,14 +33,20 @@ func (tc *TagController) Index() http.Handler {
 		page, _, err := tc.Client.GetPageAndLimit(r)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		resp, err := tc.Client.GetTags(page, 100)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 		defer resp.Body.Close()
@@ -48,7 +54,10 @@ func (tc *TagController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -56,14 +65,20 @@ func (tc *TagController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &tags); err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 
@@ -75,7 +90,10 @@ func (tc *TagController) Index() http.Handler {
 			},
 		}); err != nil {
 			tc.Logger.Error(err.Error())
-			tc.Presenter.Error(w, http.StatusInternalServerError)
+			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+				tc.Logger.Error(err.Error())
+				w.Write([]byte(err.Error()))
+			}
 			return
 		}
 	})
