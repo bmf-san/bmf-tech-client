@@ -29,7 +29,7 @@ func (pc *PrivacyPolicyController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

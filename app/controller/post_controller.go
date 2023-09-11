@@ -40,7 +40,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -50,7 +50,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -61,7 +61,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -72,7 +72,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -82,7 +82,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -97,7 +97,7 @@ func (pc *PostController) Index() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -112,7 +112,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -123,7 +123,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -134,7 +134,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -145,7 +145,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -155,7 +155,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -171,7 +171,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -186,7 +186,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -197,7 +197,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -208,7 +208,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -219,7 +219,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -229,7 +229,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -245,7 +245,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -260,7 +260,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -271,7 +271,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -282,7 +282,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -293,7 +293,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -303,7 +303,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -319,7 +319,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -336,7 +336,7 @@ func (pc *PostController) Show() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -347,7 +347,7 @@ func (pc *PostController) Show() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -358,7 +358,7 @@ func (pc *PostController) Show() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -370,7 +370,7 @@ func (pc *PostController) Show() http.Handler {
 			pc.Logger.Error(err.Error())
 			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				pc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

@@ -36,7 +36,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -46,7 +46,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -57,7 +57,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -68,7 +68,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -78,7 +78,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -93,7 +93,7 @@ func (cc *CategoryController) Index() http.Handler {
 			cc.Logger.Error(err.Error())
 			if err := cc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				cc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

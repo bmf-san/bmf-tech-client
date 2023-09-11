@@ -39,7 +39,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -50,7 +50,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -60,7 +60,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -71,7 +71,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -82,7 +82,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -92,7 +92,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -103,7 +103,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -114,7 +114,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -124,7 +124,7 @@ func (si *SitemapController) Index() http.Handler {
 			si.Logger.Error(err.Error())
 			if err := si.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				si.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

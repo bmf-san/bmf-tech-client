@@ -36,7 +36,7 @@ func (hc *HomeController) Index() http.Handler {
 			hc.Logger.Error(err.Error())
 			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				hc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -46,7 +46,7 @@ func (hc *HomeController) Index() http.Handler {
 			hc.Logger.Error(err.Error())
 			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				hc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -57,7 +57,7 @@ func (hc *HomeController) Index() http.Handler {
 			hc.Logger.Error(err.Error())
 			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				hc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -68,7 +68,7 @@ func (hc *HomeController) Index() http.Handler {
 			hc.Logger.Error(err.Error())
 			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				hc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -77,9 +77,9 @@ func (hc *HomeController) Index() http.Handler {
 			Posts: &posts,
 		}); err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err == nil {
 				hc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

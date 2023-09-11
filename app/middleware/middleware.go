@@ -41,7 +41,7 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 				}
 				if err := mw.presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 					mw.logger.Error(err.Error())
-					w.Write([]byte(err.Error()))
+					http.Error(w, err.Error(), http.StatusInternalServerError)
 				}
 				return
 			}
