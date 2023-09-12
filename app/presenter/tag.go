@@ -1,6 +1,7 @@
 package presenter
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 	"os"
@@ -36,9 +37,20 @@ func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *T
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
+	var buf bytes.Buffer
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/tag/index.tpl", "templates/partial/pagination.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Tags": t}); err != nil {
+		if err := p.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			return err
+		}
 		return err
 	}
+
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
+	}
+
 	return nil
 }

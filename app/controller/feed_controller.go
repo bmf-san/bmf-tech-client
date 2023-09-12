@@ -39,7 +39,7 @@ func (fc *FeedController) Index() http.Handler {
 			fc.Logger.Error(err.Error())
 			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				fc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -50,7 +50,7 @@ func (fc *FeedController) Index() http.Handler {
 			fc.Logger.Error(err.Error())
 			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				fc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -61,7 +61,7 @@ func (fc *FeedController) Index() http.Handler {
 			fc.Logger.Error(err.Error())
 			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				fc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

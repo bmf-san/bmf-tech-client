@@ -1,7 +1,6 @@
 package presenter
 
 import (
-	"bytes"
 	"html/template"
 	"net/http"
 
@@ -30,14 +29,9 @@ func (p *Presenter) ExecuteError(w http.ResponseWriter, code int) error {
 	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/error/index.tpl"))
 
-	var buf bytes.Buffer
-	if err := tpl.ExecuteTemplate(&buf, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
-		return err
-	}
-
 	w.WriteHeader(e.Code)
 
-	if _, err := buf.WriteTo(w); err != nil {
+	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
 		return err
 	}
 

@@ -35,7 +35,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -45,7 +45,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -56,7 +56,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -67,7 +67,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -77,7 +77,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
@@ -92,7 +92,7 @@ func (tc *TagController) Index() http.Handler {
 			tc.Logger.Error(err.Error())
 			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				tc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}

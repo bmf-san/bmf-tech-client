@@ -29,7 +29,7 @@ func (sc *SupportController) Index() http.Handler {
 			sc.Logger.Error(err.Error())
 			if err := sc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				sc.Logger.Error(err.Error())
-				w.Write([]byte(err.Error()))
+				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			return
 		}
