@@ -77,7 +77,7 @@ func (hc *HomeController) Index() http.Handler {
 			Posts: &posts,
 		}); err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err == nil {
+			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
 				hc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}

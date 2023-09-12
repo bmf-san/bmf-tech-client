@@ -1,6 +1,7 @@
 package presenter
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 	"os"
@@ -96,10 +97,21 @@ func (pt *Presenter) ExecutePostIndexByKeyword(w http.ResponseWriter, r *http.Re
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
+	var buf bytes.Buffer
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/search.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			return err
+		}
 		return err
 	}
+
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -127,10 +139,21 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
+	var buf bytes.Buffer
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/category.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			return err
+		}
 		return err
 	}
+
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -158,10 +181,21 @@ func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Reques
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
+	var buf bytes.Buffer
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/tag.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			return err
+		}
 		return err
 	}
+
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -189,9 +223,20 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
+	var buf bytes.Buffer
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/show.tpl"))
 	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Post": p}); err != nil {
+		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			return err
+		}
 		return err
 	}
+
+	if _, err := buf.WriteTo(w); err != nil {
+		return err
+	}
+
 	return nil
 }
