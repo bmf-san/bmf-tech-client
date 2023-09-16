@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"bytes"
 	"net/http"
 
 	"log/slog"
@@ -25,13 +26,18 @@ func NewPrivacyPolicyController(logger *slog.Logger, presenter *presenter.Presen
 // Index displays a listing of the resource.
 func (pc *PrivacyPolicyController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if err := pc.Presenter.ExecutePrivacyPolicyIndex(w, r); err != nil {
+		buf := new(bytes.Buffer)
+		code := http.StatusOK
+		buf, err := pc.Presenter.ExecutePrivacyPolicyIndex(buf, r)
+		if err != nil {
 			pc.Logger.Error(err.Error())
-			if err := pc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err = pc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				pc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
-			return
 		}
+
+		bufWriteTo(buf, w, code)
 	})
 }

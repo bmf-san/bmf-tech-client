@@ -1,8 +1,8 @@
 package presenter
 
 import (
+	"bytes"
 	"html/template"
-	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/model"
 )
@@ -14,10 +14,10 @@ type ErrorData struct {
 }
 
 // ExecuteError responses a error template.
-func (p *Presenter) ExecuteError(w http.ResponseWriter, code int) error {
+func (p *Presenter) ExecuteError(buf *bytes.Buffer, code int) (*bytes.Buffer, error) {
 	e := &ErrorData{
 		Code:    code,
-		Message: handleErrorMessage(code),
+		Message: "すみません！エラーです！",
 	}
 	fm := template.FuncMap{
 		"year": p.year,
@@ -28,21 +28,9 @@ func (p *Presenter) ExecuteError(w http.ResponseWriter, code int) error {
 		NoIndex: true,
 	}
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/error/index.tpl"))
-
-	w.WriteHeader(e.Code)
-
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "ErrorData": e}); err != nil {
+		return nil, err
 	}
 
-	return nil
-}
-
-// handleErrorMessage handles an error message by code.
-func handleErrorMessage(code int) string {
-	switch code {
-	case http.StatusInternalServerError:
-		return "すみません！エラーです！"
-	}
-	return ""
+	return buf, nil
 }

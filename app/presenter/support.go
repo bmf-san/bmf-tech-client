@@ -10,7 +10,7 @@ import (
 )
 
 // ExecuteSupportIndex responses a index template.
-func (pt *Presenter) ExecuteSupportIndex(w http.ResponseWriter, r *http.Request) error {
+func (pt *Presenter) ExecuteSupportIndex(buf *bytes.Buffer, r *http.Request) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year": pt.year,
 		"isAd": pt.IsAd,
@@ -32,19 +32,10 @@ func (pt *Presenter) ExecuteSupportIndex(w http.ResponseWriter, r *http.Request)
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/support/index.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }
