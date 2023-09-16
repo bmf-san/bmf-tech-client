@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"io"
@@ -33,14 +34,18 @@ func NewFeedController(logger *slog.Logger, client *api.Client, presenter *prese
 // Index displays a listing of the resource.
 func (fc *FeedController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		buf := new(bytes.Buffer)
+		code := http.StatusOK
 		// NOTE: Since api does not support getting all items, so taking a rough method.
 		resp, err := fc.Client.GetPosts(1, 99999)
 		if err != nil {
 			fc.Logger.Error(err.Error())
-			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := fc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				fc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 		defer resp.Body.Close()
@@ -48,10 +53,12 @@ func (fc *FeedController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fc.Logger.Error(err.Error())
-			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := fc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				fc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
@@ -59,10 +66,12 @@ func (fc *FeedController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			fc.Logger.Error(err.Error())
-			if err := fc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := fc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				fc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
@@ -103,9 +112,9 @@ func (fc *FeedController) Index() http.Handler {
 			Entries: entries,
 		}
 
-		buf, _ := xml.MarshalIndent(feed, "", "  ")
+		bytes, _ := xml.MarshalIndent(feed, "", "  ")
 
 		w.Header().Set("Content-Type", "application/xml")
-		w.Write([]byte(xml.Header + string(buf)))
+		w.Write([]byte(xml.Header + string(bytes)))
 	})
 }

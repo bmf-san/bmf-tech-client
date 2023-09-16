@@ -16,7 +16,7 @@ type TagIndex struct {
 }
 
 // ExecuteTagIndex responses a index template.
-func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *TagIndex) error {
+func (p *Presenter) ExecuteTagIndex(buf *bytes.Buffer, r *http.Request, t *TagIndex) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year": p.year,
 		"isAd": p.IsAd,
@@ -38,19 +38,10 @@ func (p *Presenter) ExecuteTagIndex(w http.ResponseWriter, r *http.Request, t *T
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(p.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/tag/index.tpl", "templates/partial/pagination.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Tags": t}); err != nil {
-		if err := p.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Tags": t}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }

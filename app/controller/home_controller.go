@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -31,23 +32,29 @@ func NewHomeController(logger *slog.Logger, client *api.Client, presenter *prese
 // Index displays a listing of the resource.
 func (hc *HomeController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		buf := new(bytes.Buffer)
+		code := http.StatusOK
 		page, limit, err := hc.Client.GetPageAndLimit(r)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := hc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				hc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
 		resp, err := hc.Client.GetPosts(page, limit)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := hc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				hc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 		defer resp.Body.Close()
@@ -55,10 +62,12 @@ func (hc *HomeController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := hc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				hc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
@@ -66,22 +75,27 @@ func (hc *HomeController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &posts); err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err := hc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				hc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
-		if err = hc.Presenter.ExecuteHomeIndex(w, r, &presenter.PostIndex{
+		buf, err = hc.Presenter.ExecuteHomeIndex(buf, r, &presenter.PostIndex{
 			Posts: &posts,
-		}); err != nil {
+		})
+		if err != nil {
 			hc.Logger.Error(err.Error())
-			if err := hc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err = hc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				hc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
-			return
 		}
+
+		bufWriteTo(buf, w, code)
 	})
 }

@@ -2,6 +2,7 @@
 package middleware
 
 import (
+	"bytes"
 	"net/http"
 	"runtime"
 
@@ -39,9 +40,18 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 				default:
 					mw.logger.Error("[panic] " + e.(string))
 				}
-				if err := mw.presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
-					mw.logger.Error(err.Error())
-					http.Error(w, err.Error(), http.StatusInternalServerError)
+				buf := new(bytes.Buffer)
+				code := http.StatusInternalServerError
+				buf, eerr := mw.presenter.ExecuteError(buf, code)
+				if eerr != nil {
+					mw.logger.Error(eerr.Error())
+				}
+				w.WriteHeader(code)
+				if buf == nil {
+					w.Write([]byte("Response Error"))
+				}
+				if _, err := buf.WriteTo(w); err != nil {
+					w.Write([]byte(err.Error()))
 				}
 				return
 			}

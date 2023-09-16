@@ -10,7 +10,7 @@ import (
 )
 
 // ExecuteHomeIndex responses a index template.
-func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p *PostIndex) error {
+func (pt *Presenter) ExecuteHomeIndex(buf *bytes.Buffer, r *http.Request, p *PostIndex) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":      pt.year,
 		"striptags": pt.StripTags,
@@ -34,19 +34,10 @@ func (pt *Presenter) ExecuteHomeIndex(w http.ResponseWriter, r *http.Request, p 
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/home/index.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
-	if err := tpl.ExecuteTemplate(&buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }

@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"log/slog"
@@ -30,23 +31,29 @@ func NewTagController(logger *slog.Logger, client *api.Client, presenter *presen
 // Index displays a listing of the resource.
 func (tc *TagController) Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		buf := new(bytes.Buffer)
+		code := http.StatusOK
 		page, _, err := tc.Client.GetPageAndLimit(r)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				tc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
 		resp, err := tc.Client.GetTags(page, 100)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				tc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 		defer resp.Body.Close()
@@ -54,10 +61,12 @@ func (tc *TagController) Index() http.Handler {
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				tc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
@@ -65,36 +74,42 @@ func (tc *TagController) Index() http.Handler {
 
 		if err := json.Unmarshal(body, &tags); err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				tc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
+			if err != nil {
 				tc.Logger.Error(err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			bufWriteTo(buf, w, code)
 			return
 		}
 
-		if err = tc.Presenter.ExecuteTagIndex(w, r, &presenter.TagIndex{
+		buf, err = tc.Presenter.ExecuteTagIndex(buf, r, &presenter.TagIndex{
 			Tags: &tags,
 			Pagination: &presenter.Pagination{
 				Pager:       &pagination,
 				QueryParams: "",
 			},
-		}); err != nil {
+		})
+		if err != nil {
 			tc.Logger.Error(err.Error())
-			if err := tc.Presenter.ExecuteError(w, http.StatusInternalServerError); err != nil {
+			code = http.StatusInternalServerError
+			buf, err = tc.Presenter.ExecuteError(buf, code)
+			if err != nil {
 				tc.Logger.Error(err.Error())
-				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
-			return
 		}
+		bufWriteTo(buf, w, code)
 	})
 }

@@ -43,7 +43,7 @@ type PostShow struct {
 }
 
 // ExecutePostIndex responses a index template.
-func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p *PostIndex) error {
+func (pt *Presenter) ExecutePostIndex(buf *bytes.Buffer, r *http.Request, p *PostIndex) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":      pt.year,
 		"striptags": pt.StripTags,
@@ -66,15 +66,17 @@ func (pt *Presenter) ExecutePostIndex(w http.ResponseWriter, r *http.Request, p 
 		TwitterSite:   "@bmf_san",
 		NoIndex:       false,
 	}
+
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/index.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return nil, err
 	}
-	return nil
+
+	return buf, nil
 }
 
 // ExecutePostIndexByKeyword responses a index template by keyword.
-func (pt *Presenter) ExecutePostIndexByKeyword(w http.ResponseWriter, r *http.Request, p *PostIndexBySearch) error {
+func (pt *Presenter) ExecutePostIndexByKeyword(buf *bytes.Buffer, r *http.Request, p *PostIndexBySearch) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":      pt.year,
 		"striptags": pt.StripTags,
@@ -98,25 +100,16 @@ func (pt *Presenter) ExecutePostIndexByKeyword(w http.ResponseWriter, r *http.Re
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/search.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl", "templates/partial/search.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }
 
 // ExecutePostIndexByCategory responses a index template by category.
-func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.Request, p *PostIndexByCategory) error {
+func (pt *Presenter) ExecutePostIndexByCategory(buf *bytes.Buffer, r *http.Request, p *PostIndexByCategory) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":      pt.year,
 		"striptags": pt.StripTags,
@@ -140,25 +133,16 @@ func (pt *Presenter) ExecutePostIndexByCategory(w http.ResponseWriter, r *http.R
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/category.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }
 
 // ExecutePostIndexByTag responses a index template by tag.
-func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Request, p *PostIndexByTag) error {
+func (pt *Presenter) ExecutePostIndexByTag(buf *bytes.Buffer, r *http.Request, p *PostIndexByTag) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":      pt.year,
 		"striptags": pt.StripTags,
@@ -182,25 +166,16 @@ func (pt *Presenter) ExecutePostIndexByTag(w http.ResponseWriter, r *http.Reques
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/tag.tpl", "templates/partial/pagination.tpl", "templates/partial/posts.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Posts": p}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }
 
 // ExecutePostShow responses a show template by tag.
-func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *PostShow) error {
+func (pt *Presenter) ExecutePostShow(buf *bytes.Buffer, r *http.Request, p *PostShow) (*bytes.Buffer, error) {
 	fm := template.FuncMap{
 		"year":     pt.year,
 		"unescape": pt.Unescape,
@@ -224,19 +199,10 @@ func (pt *Presenter) ExecutePostShow(w http.ResponseWriter, r *http.Request, p *
 		NoIndex:       false,
 	}
 
-	var buf bytes.Buffer
-
 	tpl := template.Must(template.New("base").Funcs(fm).ParseFS(pt.templates, "templates/layout/base.tpl", "templates/partial/meta.tpl", "templates/post/show.tpl"))
-	if err := tpl.ExecuteTemplate(w, "base", map[string]interface{}{"Meta": m, "Post": p}); err != nil {
-		if err := pt.ExecuteError(w, http.StatusInternalServerError); err != nil {
-			return err
-		}
-		return err
+	if err := tpl.ExecuteTemplate(buf, "base", map[string]interface{}{"Meta": m, "Post": p}); err != nil {
+		return nil, err
 	}
 
-	if _, err := buf.WriteTo(w); err != nil {
-		return err
-	}
-
-	return nil
+	return buf, nil
 }
