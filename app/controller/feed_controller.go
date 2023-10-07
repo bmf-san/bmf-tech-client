@@ -8,22 +8,21 @@ import (
 	"net/http"
 	"os"
 
-	"log/slog"
-
 	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A FeedController is a controller for feed.
 type FeedController struct {
-	Logger    *slog.Logger
+	Logger    *logger.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewFeedController creates a FeedController.
-func NewFeedController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *FeedController {
+func NewFeedController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *FeedController {
 	return &FeedController{
 		Logger:    logger,
 		Client:    client,
@@ -39,11 +38,11 @@ func (fc *FeedController) Index() http.Handler {
 		// NOTE: Since api does not support getting all items, so taking a rough method.
 		resp, err := fc.Client.GetPosts(1, 99999)
 		if err != nil {
-			fc.Logger.Error(err.Error())
+			fc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := fc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				fc.Logger.Error(err.Error())
+				fc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -52,11 +51,11 @@ func (fc *FeedController) Index() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			fc.Logger.Error(err.Error())
+			fc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := fc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				fc.Logger.Error(err.Error())
+				fc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -65,11 +64,11 @@ func (fc *FeedController) Index() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			fc.Logger.Error(err.Error())
+			fc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := fc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				fc.Logger.Error(err.Error())
+				fc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return

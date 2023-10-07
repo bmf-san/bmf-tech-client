@@ -6,22 +6,21 @@ import (
 	"io"
 	"net/http"
 
-	"log/slog"
-
 	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A HomeController is a controller for a home.
 type HomeController struct {
-	Logger    *slog.Logger
+	Logger    *logger.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewHomeController creates a HomeController.
-func NewHomeController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *HomeController {
+func NewHomeController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *HomeController {
 	return &HomeController{
 		Logger:    logger,
 		Client:    client,
@@ -36,11 +35,11 @@ func (hc *HomeController) Index() http.Handler {
 		code := http.StatusOK
 		page, limit, err := hc.Client.GetPageAndLimit(r)
 		if err != nil {
-			hc.Logger.Error(err.Error())
+			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := hc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				hc.Logger.Error(err.Error())
+				hc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -48,11 +47,11 @@ func (hc *HomeController) Index() http.Handler {
 
 		resp, err := hc.Client.GetPosts(page, limit)
 		if err != nil {
-			hc.Logger.Error(err.Error())
+			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := hc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				hc.Logger.Error(err.Error())
+				hc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -61,11 +60,11 @@ func (hc *HomeController) Index() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			hc.Logger.Error(err.Error())
+			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := hc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				hc.Logger.Error(err.Error())
+				hc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -74,11 +73,11 @@ func (hc *HomeController) Index() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			hc.Logger.Error(err.Error())
+			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := hc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				hc.Logger.Error(err.Error())
+				hc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -88,11 +87,11 @@ func (hc *HomeController) Index() http.Handler {
 			Posts: &posts,
 		})
 		if err != nil {
-			hc.Logger.Error(err.Error())
+			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = hc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				hc.Logger.Error(err.Error())
+				hc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 

@@ -9,9 +9,8 @@ import (
 	"net/http"
 	"os"
 
-	"log/slog"
-
 	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 	"github.com/bmf-san/goblin"
@@ -19,13 +18,13 @@ import (
 
 // A PostController is a controller for a post.
 type PostController struct {
-	Logger    *slog.Logger
+	Logger    *logger.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewPostController creates a NewPostController.
-func NewPostController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *PostController {
+func NewPostController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *PostController {
 	return &PostController{
 		Logger:    logger,
 		Client:    client,
@@ -40,11 +39,11 @@ func (pc *PostController) Index() http.Handler {
 		code := http.StatusOK
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -52,11 +51,11 @@ func (pc *PostController) Index() http.Handler {
 
 		resp, err := pc.Client.GetPosts(page, limit)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -65,11 +64,11 @@ func (pc *PostController) Index() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -78,11 +77,11 @@ func (pc *PostController) Index() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -90,11 +89,11 @@ func (pc *PostController) Index() http.Handler {
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -108,11 +107,11 @@ func (pc *PostController) Index() http.Handler {
 			},
 		})
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 
@@ -127,11 +126,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		code := http.StatusOK
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -140,11 +139,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		keyword := r.URL.Query().Get("keyword")
 		resp, err := pc.Client.GetPostsByKeyword(keyword, page, limit)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -153,11 +152,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -166,11 +165,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -178,11 +177,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -197,11 +196,11 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 			},
 		})
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 
@@ -216,11 +215,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		code := http.StatusOK
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -229,11 +228,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		name := goblin.GetParam(r.Context(), "name")
 		resp, err := pc.Client.GetPostsByCategory(name, page, limit)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -242,11 +241,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -255,11 +254,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -267,11 +266,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -286,11 +285,11 @@ func (pc *PostController) IndexByCategory() http.Handler {
 			},
 		})
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 
@@ -305,11 +304,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 		code := http.StatusOK
 		page, limit, err := pc.Client.GetPageAndLimit(r)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -318,11 +317,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 		name := goblin.GetParam(r.Context(), "name")
 		resp, err := pc.Client.GetPostsByTag(name, page, limit)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -331,11 +330,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -344,11 +343,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 		var posts model.Posts
 
 		if err := json.Unmarshal(body, &posts); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -356,11 +355,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -375,11 +374,11 @@ func (pc *PostController) IndexByTag() http.Handler {
 			},
 		})
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 
@@ -396,11 +395,11 @@ func (pc *PostController) Show() http.Handler {
 
 		resp, err := pc.Client.GetPost(title)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -409,11 +408,11 @@ func (pc *PostController) Show() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -422,11 +421,11 @@ func (pc *PostController) Show() http.Handler {
 		var post model.Post
 
 		if err := json.Unmarshal(body, &post); err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -437,11 +436,11 @@ func (pc *PostController) Show() http.Handler {
 			LinkSupport: os.Getenv("BASE_URL") + "/support",
 		})
 		if err != nil {
-			pc.Logger.Error(err.Error())
+			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = pc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				pc.Logger.Error(err.Error())
+				pc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 

@@ -8,22 +8,21 @@ import (
 	"net/http"
 	"os"
 
-	"log/slog"
-
 	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A SitemapController is a controller for a sitemap.
 type SitemapController struct {
-	Logger    *slog.Logger
+	Logger    *logger.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewSitemapController creates a SitemapController.
-func NewSitemapController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *SitemapController {
+func NewSitemapController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *SitemapController {
 	return &SitemapController{
 		Logger:    logger,
 		Client:    client,
@@ -39,11 +38,11 @@ func (si *SitemapController) Index() http.Handler {
 		// NOTE: Since api does not support getting all items, so taking a rough method.
 		resp, err := si.Client.GetPosts(1, 99999)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -52,11 +51,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -64,11 +63,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		var posts model.Posts
 		if err = json.Unmarshal(body, &posts); err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -77,11 +76,11 @@ func (si *SitemapController) Index() http.Handler {
 		// NOTE: Since api does not support getting all items, so taking a rough method.
 		resp, err = si.Client.GetCategories(1, 99999)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -90,11 +89,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		body, err = io.ReadAll(resp.Body)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -102,11 +101,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		var categories model.Categories
 		if err = json.Unmarshal(body, &categories); err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -115,11 +114,11 @@ func (si *SitemapController) Index() http.Handler {
 		// NOTE: Since api does not support getting all items, so taking a rough method.
 		resp, err = si.Client.GetTags(1, 99999)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -128,11 +127,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		body, err = io.ReadAll(resp.Body)
 		if err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
@@ -140,11 +139,11 @@ func (si *SitemapController) Index() http.Handler {
 
 		var tags model.Tags
 		if err = json.Unmarshal(body, &tags); err != nil {
-			si.Logger.Error(err.Error())
+			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err := si.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				si.Logger.Error(err.Error())
+				si.Logger.ErrorContext(r.Context(), err.Error())
 			}
 			bufWriteTo(buf, w, code)
 			return
