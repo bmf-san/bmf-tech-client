@@ -1,4 +1,3 @@
-// TODO: Implement csrf
 package middleware
 
 import (
@@ -8,21 +7,32 @@ import (
 
 	"log/slog"
 
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // Middelware represents the singular of middleware.
 type Middleware struct {
-	logger    *slog.Logger
+	logger    *logger.Logger
 	presenter *presenter.Presenter
 }
 
 // NewMiddleware creates a middleware.
-func NewMiddleware(l *slog.Logger, p *presenter.Presenter) *Middleware {
+func NewMiddleware(l *logger.Logger, p *presenter.Presenter) *Middleware {
 	return &Middleware{
 		logger:    l,
 		presenter: p,
 	}
+}
+
+// Log is a middleware for logging. It logs the access log. It also adds a trace id to the context.
+func (mw *Middleware) Log(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := mw.logger.WithTraceID(r.Context())
+
+		mw.logger.InfoContext(ctx, "access log", slog.String("http_method", r.Method), slog.String("path", r.URL.Path), slog.String("remote_addr", r.RemoteAddr), slog.String("user_agent", r.UserAgent()))
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
 }
 
 // Recovery is a middleware for recovering from panic.
@@ -32,19 +42,19 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 			if err := recover(); err != nil {
 				switch e := err.(type) {
 				case string:
-					mw.logger.Error("[panic] " + e)
+					mw.logger.ErrorContext(r.Context(), "[panic] "+e)
 				case runtime.Error:
-					mw.logger.Error("[panic] " + e.Error())
+					mw.logger.ErrorContext(r.Context(), "[panic] "+e.Error())
 				case error:
-					mw.logger.Error("[panic] " + e.Error())
+					mw.logger.ErrorContext(r.Context(), "[panic] "+e.Error())
 				default:
-					mw.logger.Error("[panic] " + e.(string))
+					mw.logger.ErrorContext(r.Context(), "[panic] "+e.(string))
 				}
 				buf := new(bytes.Buffer)
 				code := http.StatusInternalServerError
 				buf, eerr := mw.presenter.ExecuteError(buf, code)
 				if eerr != nil {
-					mw.logger.Error(eerr.Error())
+					mw.logger.ErrorContext(r.Context(), eerr.Error())
 				}
 				w.WriteHeader(code)
 				if buf == nil {
@@ -72,7 +82,7 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 // 		case http.MethodGet:
 // 			token, err := a.redisHandler.SetCSRFToken()
 // 			if err != nil {
-// 				a.logger.Error(err.Error())
+// 				a.Logger.ErrorContext(r.Context(),err.Error())
 // 				a.Presenter.Error(w, http.StatusInternalServerError)
 // 				return
 // 			}
@@ -84,13 +94,13 @@ func (mw *Middleware) Recovery(next http.Handler) http.Handler {
 // 			r.ParseForm()
 // 			token := r.Form.Get("csrf_token")
 // 			if token == "" {
-// 				a.logger.Error("CSRF token is invalid")
+// 				a.Logger.ErrorContext(r.Context(),"CSRF token is invalid")
 // 				a.Presenter.Error(w, http.StatusInternalServerError)
 // 				return
 // 			}
 
 // 			if err := a.redisHandler.HasCSRFToken(token); err != nil {
-// 				a.logger.Error(err.Error())
+// 				a.Logger.ErrorContext(r.Context(),err.Error())
 // 				a.Presenter.Error(w, http.StatusInternalServerError)
 // 				return
 // 			}

@@ -4,23 +4,23 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"log/slog"
 	"net/http"
 
 	"github.com/bmf-san/bmf-tech-client/app/api"
+	"github.com/bmf-san/bmf-tech-client/app/logger"
 	"github.com/bmf-san/bmf-tech-client/app/model"
 	"github.com/bmf-san/bmf-tech-client/app/presenter"
 )
 
 // A TagController is a controller for a tag.
 type TagController struct {
-	Logger    *slog.Logger
+	Logger    *logger.Logger
 	Client    *api.Client
 	Presenter *presenter.Presenter
 }
 
 // NewTagController creates a TagController.
-func NewTagController(logger *slog.Logger, client *api.Client, presenter *presenter.Presenter) *TagController {
+func NewTagController(logger *logger.Logger, client *api.Client, presenter *presenter.Presenter) *TagController {
 	return &TagController{
 		Logger:    logger,
 		Client:    client,
@@ -35,10 +35,10 @@ func (tc *TagController) Index() http.Handler {
 		code := http.StatusOK
 		page, _, err := tc.Client.GetPageAndLimit(r)
 		if err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			bufWriteTo(buf, w, code)
@@ -47,10 +47,10 @@ func (tc *TagController) Index() http.Handler {
 
 		resp, err := tc.Client.GetTags(page, 100)
 		if err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			bufWriteTo(buf, w, code)
@@ -60,10 +60,10 @@ func (tc *TagController) Index() http.Handler {
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			bufWriteTo(buf, w, code)
@@ -73,10 +73,10 @@ func (tc *TagController) Index() http.Handler {
 		var tags model.Tags
 
 		if err := json.Unmarshal(body, &tags); err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			bufWriteTo(buf, w, code)
@@ -85,10 +85,10 @@ func (tc *TagController) Index() http.Handler {
 
 		var pagination model.Pagination
 		if err := pagination.Convert(resp.Header); err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 			bufWriteTo(buf, w, code)
@@ -103,11 +103,11 @@ func (tc *TagController) Index() http.Handler {
 			},
 		})
 		if err != nil {
-			tc.Logger.Error(err.Error())
+			tc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
 			buf, err = tc.Presenter.ExecuteError(buf, code)
 			if err != nil {
-				tc.Logger.Error(err.Error())
+				tc.Logger.ErrorContext(r.Context(), err.Error())
 			}
 		}
 		bufWriteTo(buf, w, code)
