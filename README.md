@@ -1,7 +1,6 @@
 # bmf-tech-client
 [![GitHub release](https://img.shields.io/github/release/bmf-san/bmf-tech-client.svg)](https://github.com/bmf-san/bmf-tech-client/releases)
 [![CircleCI](https://circleci.com/gh/bmf-san/bmf-tech-client/tree/master.svg?style=svg)](https://circleci.com/gh/bmf-san/bmf-tech-client/tree/master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/bmf-san/bmf-tech-client)](https://goreportcard.com/report/github.com/bmf-san/bmf-tech-client)
 [![GitHub license](https://img.shields.io/github/license/bmf-san/bmf-tech-client)](https://github.com/bmf-san/bmf-tech-client/blob/master/LICENSE)
 [![Sourcegraph](https://sourcegraph.com/github.com/bmf-san/bmf-tech-client/-/badge.svg)](https://sourcegraph.com/github.com/bmf-san/bmf-tech-client?badge)
 
