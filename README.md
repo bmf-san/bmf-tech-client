@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/github/license/bmf-san/bmf-tech-client)](https://github.com/bmf-san/bmf-tech-client/blob/master/LICENSE)
 [![Sourcegraph](https://sourcegraph.com/github.com/bmf-san/bmf-tech-client/-/badge.svg)](https://sourcegraph.com/github.com/bmf-san/bmf-tech-client?badge)
 
-[bmf-tech.com]で運用されているアプリケーションです。
+[bmf-tech.com](https://bmf-tech.com/)で運用されているアプリケーションです。
 
 cf. [bmf-techを支える技術](https://bmf-tech.com/posts/bmf-tech%E3%82%92%E6%94%AF%E3%81%88%E3%82%8B%E6%8A%80%E8%A1%93)
 
