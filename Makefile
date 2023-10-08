@@ -40,10 +40,6 @@ ifeq ($(shell command -v staticcheck 2> /dev/null),)
 	cd app && go install honnef.co/go/tools/cmd/staticcheck@latest
 endif
 
-.PHONY: go-cleanarch
-go-cleanarch: ## Run go-cleanarch.
-	cd app && go-cleanarch -application usecase
-
 .PHONY: staticcheck
 staticcheck: ## Run staticcheck.
 	cd app && staticcheck ./...
