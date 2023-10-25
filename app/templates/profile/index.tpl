@@ -102,13 +102,17 @@
                 </div>
                 <div class="margin-top-3rem">
                     <h2>登壇</h2>
-					<p>全ての登壇資料は<a href="http://speakerdeck.com/bmf_san" target="_blank">Speaker Deck</a>に掲載しています。</p>
+                    <p>全ての登壇資料は<a href="http://speakerdeck.com/bmf_san" target="_blank">Speaker Deck</a>に掲載しています。</p>
                     <p><em><span>Go Conference 2021 Autumn</span></em><br><a href="https://speakerdeck.com/bmf_san/httpdetukuruhttprutazi-zuo-ru-men" target="_blank">net/httpでつくるHTTPルーター自作入門</a></p>
                     <p><em><span>Laravel JP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">Laravel で始めるテスト生活</a></p>
                     <p><em><span>PHPerKaigi 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">URLルーティングをつくる</a></p>
                     <p><em><span>Japan PHP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/phpdeurlruteinguwozi-zuo-suru" target="_blank">PHP で URL ルーティングを自作する</a></p>
                     <p><em><span>Japan PHP Conference 2018</span></em><br><a href="https://speakerdeck.com/bmf_san/20dai-gakao-eruenziniakiyarialun" target="_blank">20 代が考えるエンジニアキャリア論</a></p>
                     <p><em><span>Japan PHP Conference 2017</span></em><br><a href="https://speakerdeck.com/bmf_san/3nian-mu-enziniaosswohazimeru" target="_blank">3年目エンジニアOSSをはじめる</a></p>
+                </div>
+                <div class="margin-top-3rem">
+                    <h2>メディア掲載</h2>
+                    <p><em><span>レバテックフリーランス</span></em><br><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></p>
                 </div>
             </div>
         </div>
