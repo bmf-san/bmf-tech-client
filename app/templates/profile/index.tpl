@@ -99,12 +99,16 @@
                 <div class="margin-top-3rem">
                     <h2>経歴</h2>
                     <p><em>株式会社マクアケ/ソフトウェアエンジニア</em><br><span class="font-size-small">2018-現在</span></p>
+                    <p class="font-size-small">エンドユーザー・管理者向け機能開発、技術負債解消、システム基盤開発などに従事。</p>
                     <br>
                     <p><em>株式会社イノベーター・ジャパン/ソフトウェアエンジニア</em><br><span class="font-size-small">2017-2018</span></p>
+                    <p class="font-size-small">受託・自社開発にてエンドユーザー向け機能開発に従事。</p>
                     <br>
                     <p><em>某スタートアップ/ソフトウェアエンジニア</em><br><span class="font-size-small">2016-2017</span></p>
+                    <p class="font-size-small">エンドユーザー向け機能開発に従事。</p>
                     <br>
                     <p><em>フリーランス/マークアップエンジニア</em><br><span class="font-size-small">2015-2016</span></p>
+                    <p class="font-size-small">WebデザインやWebページのマークアップ、Wordpressのコーディングなどに従事。</p>
                 </div>
                 <div class="margin-top-3rem">
                     <h2>資格</h2>
