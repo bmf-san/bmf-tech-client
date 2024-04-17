@@ -6,7 +6,7 @@
                 <div class="text-align-center">
                     <h1 class="text-align-center color-text-reverse">{{ .Post.Post.Title }}</h1>
                     <p><a class="color-text-reverse" href="/posts/categories/{{ .Post.Post.Category.Name }}">{{ .Post.Post.Category.Name }}</a></p>
-                    <p><span class="article-date color-text-reverse">{{ .Post.Post.UpdatedAt.Format "2006年1月2日 01:02:03" }} 更新</span></p>
+                    <p><span class="article-date color-text-reverse padding-1rem">{{ .Post.Post.CreatedAt.Format "2006年1月2日" }} 作成</span><span class="article-date color-text-reverse padding-1rem">{{ .Post.Post.UpdatedAt.Format "2006年1月2日" }} 更新</span></p>
                 </div>
             </div>
         </div>
@@ -58,7 +58,14 @@
         </div>
         <div class="row">
             <div class="col">
-                <button style="width:100%" onclick="window.open({{ .Post.LinkSupport }})">bmf-tech.comをサポートする！</button>
+                <a class="tag" href="{{ .Post.TwitterShareURL }}" rel="nofollow noopener" target="_blank">Xにシェアする</a>
+                <a class="tag" href="{{ .Post.FacebookShareURL }}" rel="nofollow noopener" target="_blank">Facebookにシェアする</a>
+                <a class="tag" href="{{ .Post.HatenaShareURL }}" rel="nofollow noopener" target="_blank">はてなにシェアする</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button style="width:100%" onclick="window.open({{ .Post.SupportURL }})">bmf-tech.comをサポートする！</button>
             </div>
         </div>
         <div class="row">

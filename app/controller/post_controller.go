@@ -432,8 +432,11 @@ func (pc *PostController) Show() http.Handler {
 		}
 
 		buf, err = pc.Presenter.ExecutePostShow(buf, r, &presenter.PostShow{
-			Post:        &post,
-			LinkSupport: os.Getenv("BASE_URL") + "/support",
+			Post:             &post,
+			TwitterShareURL:  "https://twitter.com/share?url=" + os.Getenv("BASE_URL") + "/" + post.Title + "&text=" + post.Title + "&via=bmf_san" + "&related=bmf_san",
+			FacebookShareURL: "http://www.facebook.com/share.php?u=" + os.Getenv("BASE_URL") + "/" + post.Title,
+			HatenaShareURL:   "http://b.hatena.ne.jp/add?mode=confirm&url=" + os.Getenv("BASE_URL") + "/" + post.Title + "&title=" + post.Title,
+			SupportURL:       os.Getenv("BASE_URL") + "/support",
 		})
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
