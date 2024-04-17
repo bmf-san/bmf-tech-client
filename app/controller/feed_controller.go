@@ -84,8 +84,8 @@ func (fc *FeedController) Index() http.Handler {
 					Href: u,
 				},
 				ID:        u,
-				UpdatedAt: p.UpdatedAt,
-				CreatedAt: p.CreatedAt,
+				Updated:   p.UpdatedAt,
+				Published: p.CreatedAt,
 				Author: model.FeedAuthor{
 					Name: p.Admin.Name,
 				},
@@ -103,7 +103,7 @@ func (fc *FeedController) Index() http.Handler {
 			Link: model.FeedLink{
 				Href: url,
 			},
-			UpdatedAt: posts[len(posts)-1].UpdatedAt,
+			Updated: posts[len(posts)-1].UpdatedAt,
 			Author: model.FeedAuthor{
 				Name: "bmf_san",
 			},
