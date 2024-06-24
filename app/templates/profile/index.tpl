@@ -119,6 +119,7 @@
                 <div class="margin-top-3rem">
                     <h2>登壇</h2>
                     <p>全ての登壇資料は<a href="http://speakerdeck.com/bmf_san" target="_blank">Speaker Deck</a>に掲載しています。</p>
+                    <p><em><span>Go Conference 2024</span></em><br><a href="https://speakerdeck.com/bmf_san/zi-zuo-httprutakaraxin-siiservemuxhe" target="_blank">自作HTTPルーターから新しいServeMuxへ</a></p>
                     <p><em><span>Go Conference 2021 Autumn</span></em><br><a href="https://speakerdeck.com/bmf_san/httpdetukuruhttprutazi-zuo-ru-men" target="_blank">net/httpでつくるHTTPルーター自作入門</a></p>
                     <p><em><span>Laravel JP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">Laravel で始めるテスト生活</a></p>
                     <p><em><span>PHPerKaigi 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">URLルーティングをつくる</a></p>
@@ -128,7 +129,8 @@
                 </div>
                 <div class="margin-top-3rem">
                     <h2>メディア掲載</h2>
-                    <p><em><span>レバテックフリーランス</span></em><br><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></p>
+                    <p><em><a href="https://freelance.levtech.jp/" target="_blank">レバテックフリーランス</a></em><br><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></p>
+                    <p><em><a href="https://dividable.net/" target="_blank">DAINOTE</a></em><br><a href="https://dividable.net/it-career/engineer/ruby-no-experience" target="_blank">未経験からRubyエンジニアになるには？求人例・転職方法・スキルを紹介</a></p>
                 </div>
             </div>
         </div>
