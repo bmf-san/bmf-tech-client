@@ -12,17 +12,22 @@ services:
       - ./app:/go/bmf-tech-client/app
     networks:
       - gobel_link
-  nginx:
-    container_name: "bmf-tech-client-nginx"
+  gondola:
+    container_name: "bmf-tech-client-gondola"
     build:
-        context: "./nginx"
+        context: "./gondola"
         dockerfile: "Dockerfile.local"
+        args:
+          PLATFORM: "${PLATFORM}"
     ports:
-      - "81:80"
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./gondola/certificates:/certificates
     networks:
-      - gobel_link
+        - gobel_link
     depends_on:
-      - app
+        - app
 networks:
     gobel_link:
         external: true
