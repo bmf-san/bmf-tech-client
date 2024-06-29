@@ -45,7 +45,7 @@ func (hc *HomeController) Index() http.Handler {
 			return
 		}
 
-		resp, err := hc.Client.GetPosts(page, limit)
+		resp, err := hc.Client.GetPosts(r.Context(), page, limit)
 		if err != nil {
 			hc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError

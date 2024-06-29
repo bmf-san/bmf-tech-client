@@ -36,7 +36,7 @@ func (fc *FeedController) Index() http.Handler {
 		buf := new(bytes.Buffer)
 		code := http.StatusOK
 		// NOTE: Since api does not support getting all items, so taking a rough method.
-		resp, err := fc.Client.GetPosts(1, 99999)
+		resp, err := fc.Client.GetPosts(r.Context(), 1, 99999)
 		if err != nil {
 			fc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError

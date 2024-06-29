@@ -45,7 +45,7 @@ func (cc *CategoryController) Index() http.Handler {
 			return
 		}
 
-		resp, err := cc.Client.GetCategories(page, 100)
+		resp, err := cc.Client.GetCategories(r.Context(), page, 100)
 		if err != nil {
 			cc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError

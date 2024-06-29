@@ -2,12 +2,15 @@ package api
 
 import (
 	"bytes"
+	"context"
 	"errors"
 	"net/http"
 	"net/url"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/bmf-san/bmf-tech-client/app/contextutils"
 )
 
 const (
@@ -37,12 +40,14 @@ func NewClient() *Client {
 }
 
 // Do sends an HTTP request and returns an HTTP response.
-func (c *Client) Do(method string, path string, query map[string]string, data []byte) (*http.Response, error) {
+func (c *Client) Do(ctx context.Context, method string, path string, query map[string]string, data []byte) (*http.Response, error) {
 	c.URL.Path = path
 	req, err := http.NewRequest(method, c.URL.String(), bytes.NewBuffer(data))
 	if err != nil {
 		return nil, err
 	}
+	tid := contextutils.GetTraceID(ctx)
+	req.Header.Set("X-Trace-ID", tid)
 
 	// query
 	q := req.URL.Query()
