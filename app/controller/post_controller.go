@@ -49,7 +49,7 @@ func (pc *PostController) Index() http.Handler {
 			return
 		}
 
-		resp, err := pc.Client.GetPosts(page, limit)
+		resp, err := pc.Client.GetPosts(r.Context(), page, limit)
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -137,7 +137,7 @@ func (pc *PostController) IndexByKeyword() http.Handler {
 		}
 
 		keyword := r.URL.Query().Get("keyword")
-		resp, err := pc.Client.GetPostsByKeyword(keyword, page, limit)
+		resp, err := pc.Client.GetPostsByKeyword(r.Context(), keyword, page, limit)
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -226,7 +226,7 @@ func (pc *PostController) IndexByCategory() http.Handler {
 		}
 
 		name := goblin.GetParam(r.Context(), "name")
-		resp, err := pc.Client.GetPostsByCategory(name, page, limit)
+		resp, err := pc.Client.GetPostsByCategory(r.Context(), name, page, limit)
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -315,7 +315,7 @@ func (pc *PostController) IndexByTag() http.Handler {
 		}
 
 		name := goblin.GetParam(r.Context(), "name")
-		resp, err := pc.Client.GetPostsByTag(name, page, limit)
+		resp, err := pc.Client.GetPostsByTag(r.Context(), name, page, limit)
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -393,7 +393,7 @@ func (pc *PostController) Show() http.Handler {
 		code := http.StatusOK
 		title := goblin.GetParam(r.Context(), "title")
 
-		resp, err := pc.Client.GetPost(title)
+		resp, err := pc.Client.GetPost(r.Context(), title)
 		if err != nil {
 			pc.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError

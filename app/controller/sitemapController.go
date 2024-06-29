@@ -36,7 +36,7 @@ func (si *SitemapController) Index() http.Handler {
 		buf := new(bytes.Buffer)
 		code := http.StatusOK
 		// NOTE: Since api does not support getting all items, so taking a rough method.
-		resp, err := si.Client.GetPosts(1, 99999)
+		resp, err := si.Client.GetPosts(r.Context(), 1, 99999)
 		if err != nil {
 			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -74,7 +74,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 
 		// NOTE: Since api does not support getting all items, so taking a rough method.
-		resp, err = si.Client.GetCategories(1, 99999)
+		resp, err = si.Client.GetCategories(r.Context(), 1, 99999)
 		if err != nil {
 			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError
@@ -112,7 +112,7 @@ func (si *SitemapController) Index() http.Handler {
 		}
 
 		// NOTE: Since api does not support getting all items, so taking a rough method.
-		resp, err = si.Client.GetTags(1, 99999)
+		resp, err = si.Client.GetTags(r.Context(), 1, 99999)
 		if err != nil {
 			si.Logger.ErrorContext(r.Context(), err.Error())
 			code = http.StatusInternalServerError

@@ -45,7 +45,7 @@ func (tc *TagController) Index() http.Handler {
 			return
 		}
 
-		resp, err := tc.Client.GetTags(page, 100)
+		resp, err := tc.Client.GetTags(r.Context(), page, 100)
 		if err != nil {
 			tc.Logger.ErrorContext(r.Context(), err.Error())
 			buf, err := tc.Presenter.ExecuteError(buf, http.StatusInternalServerError)

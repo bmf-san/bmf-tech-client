@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -20,8 +21,8 @@ const (
 )
 
 // GetPosts requests posts
-func (c *Client) GetPosts(page int, limit int) (*http.Response, error) {
-	resp, err := c.Do(http.MethodGet, getPostsPath, map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
+func (c *Client) GetPosts(ctx context.Context, page int, limit int) (*http.Response, error) {
+	resp, err := c.Do(ctx, http.MethodGet, getPostsPath, map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -30,8 +31,8 @@ func (c *Client) GetPosts(page int, limit int) (*http.Response, error) {
 }
 
 // GetPostsByKeyword requests posts by keyword.
-func (c *Client) GetPostsByKeyword(keyword string, page int, limit int) (*http.Response, error) {
-	resp, err := c.Do(http.MethodGet, getPostsBySearchPath, map[string]string{"keyword": keyword, "page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
+func (c *Client) GetPostsByKeyword(ctx context.Context, keyword string, page int, limit int) (*http.Response, error) {
+	resp, err := c.Do(ctx, http.MethodGet, getPostsBySearchPath, map[string]string{"keyword": keyword, "page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -40,8 +41,8 @@ func (c *Client) GetPostsByKeyword(keyword string, page int, limit int) (*http.R
 }
 
 // GetPostsByCategory requests posts by category.
-func (c *Client) GetPostsByCategory(name string, page int, limit int) (*http.Response, error) {
-	resp, err := c.Do(http.MethodGet, fmt.Sprintf(getPostsByCategoryPath, name), map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
+func (c *Client) GetPostsByCategory(ctx context.Context, name string, page int, limit int) (*http.Response, error) {
+	resp, err := c.Do(ctx, http.MethodGet, fmt.Sprintf(getPostsByCategoryPath, name), map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -50,8 +51,8 @@ func (c *Client) GetPostsByCategory(name string, page int, limit int) (*http.Res
 }
 
 // GetPostsByTag requests posts by tag.
-func (c *Client) GetPostsByTag(name string, page int, limit int) (*http.Response, error) {
-	resp, err := c.Do(http.MethodGet, fmt.Sprintf(getPostsByTagPath, name), map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
+func (c *Client) GetPostsByTag(ctx context.Context, name string, page int, limit int) (*http.Response, error) {
+	resp, err := c.Do(ctx, http.MethodGet, fmt.Sprintf(getPostsByTagPath, name), map[string]string{"page": strconv.Itoa(page), "limit": strconv.Itoa(limit)}, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -60,8 +61,8 @@ func (c *Client) GetPostsByTag(name string, page int, limit int) (*http.Response
 }
 
 // GetPost requests a post.
-func (c *Client) GetPost(title string) (*http.Response, error) {
-	resp, err := c.Do(http.MethodGet, fmt.Sprintf(getPostPath, title), nil, nil)
+func (c *Client) GetPost(ctx context.Context, title string) (*http.Response, error) {
+	resp, err := c.Do(ctx, http.MethodGet, fmt.Sprintf(getPostPath, title), nil, nil)
 	if err != nil {
 		return nil, err
 	}
