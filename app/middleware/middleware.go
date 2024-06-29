@@ -28,7 +28,7 @@ func NewMiddleware(l *logger.Logger, p *presenter.Presenter) *Middleware {
 // Log is a middleware for logging. It logs the access log. It also adds a trace id to the context.
 func (mw *Middleware) Log(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		mw.logger.InfoContext(r.Context(), "access log", slog.String("http_method", r.Method), slog.String("path", r.URL.Path), slog.String("remote_addr", r.RemoteAddr), slog.String("user_agent", r.UserAgent()),slog.String("trace_id", r.Header.Get("X-Trace-ID"))
+		mw.logger.InfoContext(r.Context(), "access log", slog.String("http_method", r.Method), slog.String("path", r.URL.Path), slog.String("remote_addr", r.RemoteAddr), slog.String("user_agent", r.UserAgent()), slog.String("trace_id", r.Header.Get("X-Trace-ID")))
 		next.ServeHTTP(w, r.WithContext(r.Context()))
 	})
 }
