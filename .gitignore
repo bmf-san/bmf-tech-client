@@ -4,6 +4,10 @@
 /app/tmp
 .env
 
+# gondola
+/gondola/certificates
+!/gondola/.gitkeep
+
 # editor
 .vscode/
 launch.json

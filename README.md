@@ -26,19 +26,24 @@ cp .env_example .env
 127.0.0.1 bmf-tech-client.local
 ```
 
-4. コンテナのビルド
+4. 証明書の作成
+```
+make create-certs
+```
+
+5. コンテナのビルド
 ```
 make docker-compose-build
 ```
 
-5. コンテナの起動
+6. コンテナの起動
 ```
 make docker-compose-up
 または
 make docker-compose-up-d
 ```
 
-`bmf-tech-client.local:81`にアクセス。
+`bmf-tech-client.local`にアクセス。
 
 # コントリビューション
 IssueやPull Requestを受け付けています。
