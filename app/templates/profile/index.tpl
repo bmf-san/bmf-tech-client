@@ -21,7 +21,7 @@
                 <p>ソフトウェアエンジニア。<br></p>
                 <p>2015年に大学卒業後、フリーランス、スタートアップ、受託開発会社等を経て、現在は事業会社の開発部門にてソフトウェアエンジニアとして従事しています。</p>
                 <p><strong><em>「組織・ソフトウェアの価値を長期的に向上させる」</em></strong>ということに興味があり、アーキテクトやリードエンジニアとしてのキャリアを歩んでいきたいと考えています。<br>自らが関わる組織とプロダクトの成長に貢献していきたいと日々思っています。<br></p>
-                <p>自分が使いたいアプリケーションのコードを書くのが好きです。<br>趣味はコーディングと筋トレと観葉植物と釣りとキャンプ。<br></p>
+                <p>自分が使いたいアプリケーションのコードを書くのが好きです。<br>趣味はコーディングとジムと観葉植物です。<br></p>
                 <div class="margin-top-3rem">
                     <table>
                         <thead>
@@ -107,7 +107,7 @@
                 <div class="margin-top-3rem">
                     <h2>資格</h2>
                     <p><span>2023</span> <em>Google Cloud Certified Associate Cloud Engineer</em></p>
-                    <p><span>2022</span> <em>Registerd Scrum Master（LSM）</em></p>
+                    <p><span>2022</span> <em>Registerd Scrum Master（RSM）</em></p>
                     <p><span>2021</span> <em>AWS Certified Solutions Architect – Associate</em></p>
                     <p><span>2016</span> <em>Webデザイン技能検定2級</em></p>
                 </div>
@@ -129,8 +129,24 @@
                 </div>
                 <div class="margin-top-3rem">
                     <h2>メディア掲載</h2>
-                    <p><em><a href="https://freelance.levtech.jp/" target="_blank">レバテックフリーランス</a></em><br><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></p>
-                    <p><em><a href="https://dividable.net/" target="_blank">DAINOTE</a></em><br><a href="https://dividable.net/it-career/engineer/ruby-no-experience" target="_blank">未経験からRubyエンジニアになるには？求人例・転職方法・スキルを紹介</a></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="https://freelance.levtech.jp/" target="_blank">レバテックフリーランス</a></td>
+                                <td><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="https://dividable.net/" target="_blank">DAINOTE</a></td>
+                                <td><a href="https://dividable.net/it-career/engineer/ruby-no-experience" target="_blank">未経験からRubyエンジニアになるには？求人例・転職方法・スキルを紹介</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
