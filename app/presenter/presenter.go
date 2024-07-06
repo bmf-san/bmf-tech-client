@@ -3,7 +3,6 @@ package presenter
 import (
 	"embed"
 	"html/template"
-	"math/rand"
 	"regexp"
 	"time"
 )
@@ -52,6 +51,8 @@ func (p *Presenter) Summary(s string) string {
 
 // IsAd returns a flag indicating whether to output ads.
 func (p *Presenter) IsAd() bool {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return r.Intn(5)%3 == 0
+	// r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	// return r.Intn(5)%3 == 0
+	// NOTE: Alwayrs return true for now.
+	return true
 }
