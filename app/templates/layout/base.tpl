@@ -222,6 +222,16 @@
     </header>
     {{ template "headline" . }}
     {{ template "body" . }}
+    {{ if isAd }}
+    <div class="row text-align-center row-sponsored-link margin-top-2rem">
+        <div class="col">
+            <div id="126192-1">
+                <script src="//ads.themoneytizer.com/s/gen.js?type=1"></script>
+                <script src="//ads.themoneytizer.com/s/requestform.js?siteId=126192&formatId=1"></script>
+            </div>
+        </div>
+    </div>
+    {{ end }}
     <footer class="sticky-footer margin-top-2rem">
         <div class="container">
             <div class="row text-align-center font-size-small">
