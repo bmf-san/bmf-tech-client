@@ -4,17 +4,11 @@
 <head>
     {{ template "meta" .Meta }}
     <link rel="icon" href="/favicon.ico" />
-    <!-- sea.css -->
     <link rel="stylesheet" href="https://unpkg.com/sea.css/dist/sea.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <!-- highlight -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/styles/monokai.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- mermaid -->
-    <link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true });</script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-784B55NW88"></script>
     <script async>
