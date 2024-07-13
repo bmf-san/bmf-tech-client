@@ -120,6 +120,7 @@
                     <h2>登壇</h2>
                     <p>全ての登壇資料は<a href="http://speakerdeck.com/bmf_san" target="_blank">Speaker Deck</a>に掲載しています。</p>
                     <p><em><span>Go Conference 2024</span></em><br><a href="https://speakerdeck.com/bmf_san/zi-zuo-httprutakaraxin-siiservemuxhe" target="_blank">自作HTTPルーターから新しいServeMuxへ</a></p>
+                    <p><em><span>PHPerKaigi 2024</span></em><br><a href="https://speakerdeck.com/bmf_san/gu-kunatutesimatutaphphuremuwakutophpnohasiyonatuhuzhan-lue" target="_blank">古くなってしまったPHPフレームワークとPHPのバージョンアップ戦略</a></p>
                     <p><em><span>Go Conference 2021 Autumn</span></em><br><a href="https://speakerdeck.com/bmf_san/httpdetukuruhttprutazi-zuo-ru-men" target="_blank">net/httpでつくるHTTPルーター自作入門</a></p>
                     <p><em><span>Laravel JP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">Laravel で始めるテスト生活</a></p>
                     <p><em><span>PHPerKaigi 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">URLルーティングをつくる</a></p>
