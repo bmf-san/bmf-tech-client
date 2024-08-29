@@ -98,7 +98,10 @@
                 </div>
                 <div class="margin-top-3rem">
                     <h2>職歴</h2>
-                    <p><em>株式会社マクアケ/ソフトウェアエンジニア</em><br><span class="font-size-small">2018-現在</span></p>
+                    <p><em>株式会社SmartHR/ソフトウェアエンジニア</em><br><span class="font-size-small">2024-現在</span></p>
+                    <p class="font-size-small">プロダクト基盤開発に従事。</p>
+                    <br>
+                    <p><em>株式会社マクアケ/ソフトウェアエンジニア</em><br><span class="font-size-small">2018-2024</span></p>
                     <p class="font-size-small">エンドユーザー・管理者向け機能開発、技術負債解消、システム基盤開発などに従事。</p>
                     <br>
                     <p><em>株式会社イノベーター・ジャパン/ソフトウェアエンジニア</em><br><span class="font-size-small">2017-2018</span></p>
