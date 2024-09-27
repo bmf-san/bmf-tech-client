@@ -69,10 +69,6 @@ func main() {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
-	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/ads.txt`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
-	}))
-
 	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/profile.png`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
