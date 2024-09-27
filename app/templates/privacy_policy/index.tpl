@@ -36,7 +36,7 @@
                 <p>当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。</p>
                 <p>このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関して、詳しくは<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">こちら</a>をご参照ください。</p>
                 <h2>当サイトの広告について</h2>
-                <p>当サイトでは「Amazonアソシエイト」などのアフィリエイトプログラムや第三者配信広告サービス「GoogleAdsense」や「The Moneytizer」を利用しています。</p>
+                <p>当サイトでは「Amazonアソシエイト」などのアフィリエイトプログラムや第三者配信広告サービス「GoogleAdsense」を利用しています。</p>
                 <p>第三者配信広告サービスでは広告配信プロセスにおいてデータを収集するために、Cookieを使用しています。GoogleでCookieを使用することにより、インターネットにおけるご自身のサイトや他のサイトへのアクセス情報に基づいてユーザーに広告を配信することが可能になります。</p>
                 <p>Cookieを使用しないように設定するには<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank">こちら</a>をご参照ください。</p>
                 <h2>著作権について</h2>
