@@ -132,6 +132,12 @@
                     <p><em><span>Japan PHP Conference 2017</span></em><br><a href="https://speakerdeck.com/bmf_san/3nian-mu-enziniaosswohazimeru" target="_blank">3年目エンジニアOSSをはじめる</a></p>
                 </div>
                 <div class="margin-top-3rem">
+                    <h2>ボランティア</h2>
+                    <p>「ソフトウェアアーキテクチャ・ハードパーツ ―分散アーキテクチャのためのトレードオフ分析」の書籍レビュアとして参加</p>
+                    <p>「スタッフエンジニアの道 ―優れた技術専門職になるためのガイド」の書籍レビュアとして参加</p>
+                    <p>「ソフトウェアアーキテクトのための意思決定術　リーダーシップ／技術／プロダクトマネジメントの活用」の書籍レビュアとして参加</p>
+                </div>
+                <div class="margin-top-3rem">
                     <h2>メディア掲載</h2>
                     <table>
                         <thead>
