@@ -20,8 +20,8 @@
                 <h1 style="margin-top: 0; font-size: xx-large"><strong>Kenta Takeuchi</strong></h1>
                 <p>ソフトウェアエンジニア。<br></p>
                 <p>2015年に大学卒業後、フリーランス、スタートアップ、受託開発会社等を経て、現在は事業会社の開発部門にてソフトウェアエンジニアとして従事しています。</p>
-                <p><strong><em>「組織・ソフトウェアの価値を長期的に向上させる」</em></strong>ということに興味があり、アーキテクトやリードエンジニアとしてのキャリアを歩んでいきたいと考えています。<br>自らが関わる組織とプロダクトの成長に貢献していきたいと日々思っています。<br></p>
-                <p>自分が使いたいアプリケーションのコードを書くのが好きです。<br>趣味はコーディングとジムと観葉植物です。<br></p>
+                <p><strong><em>「組織・ソフトウェアの価値を長期的に向上させること」</em></strong>を目指して、自らが関わる組織とプロダクトの成長に貢献していきたいと日々思っています。</p>
+                <p>自分が使いたいアプリケーションのコードを書くのが好きです。<br>趣味はコーディングとジムと観葉植物です。</p>
                 <div class="margin-top-3rem">
                     <table>
                         <thead>
@@ -63,14 +63,6 @@
                                 <td>Speaker Deck</td>
                                 <td><a href="https://speakerdeck.com/bmf_san">bmf_san</a></td>
                             </tr>
-                            <tr>
-                                <td>HackerRank</td>
-                                <td><a href="https://www.hackerrank.com/bmf_san">bmf_san</a></td>
-                            </tr>
-                            <tr>
-                                <td>LeetCode</td>
-                                <td><a href="https://leetcode.com/bmf-san/">bmf-san</a></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -78,13 +70,10 @@
                     <h2>経験</h2>
                     <h3>技術</h3>
                     <ul>
-                        <li>AWSやGCPなどのクラウドベンダーを利用したシステム設計・開発・運用</li>
-                        <li>分散システムの構築・開発・運用</li>
-                        <li>コンテナベースのアプリケーション開発</li>
-                        <li>バッチ処理の設計・開発</li>
-                        <li>ジョブスケジュリーリングの設計・開発</li>
                         <li>GoやPHPを使ったバックエンド開発</li>
                         <li>ReactやVue.jsを使ったフロンドエンド開発</li>
+                        <li>分散システムの構築・開発・運用</li>
+                        <li>AWSやGCPなどのクラウドベンダーを利用したシステム設計・開発・運用</li>
                     </ul>
                     <h3>チームマネジメント</h3>
                     <ul>
@@ -92,6 +81,9 @@
                         <li>チームマネジメント</li>
                         <li>プロジェクトマネジメント</li>
                         <li>スクラム開発の運用</li>
+                    </ul>
+                    <h3>採用・広報</h3>
+                    <ul>
                         <li>採用活動</li>
                         <li>技術カルチャーの推進</li>
                     </ul>
@@ -125,11 +117,6 @@
                     <p><em><span>Go Conference 2024</span></em><br><a href="https://speakerdeck.com/bmf_san/zi-zuo-httprutakaraxin-siiservemuxhe" target="_blank">自作HTTPルーターから新しいServeMuxへ</a></p>
                     <p><em><span>PHPerKaigi 2024</span></em><br><a href="https://speakerdeck.com/bmf_san/gu-kunatutesimatutaphphuremuwakutophpnohasiyonatuhuzhan-lue" target="_blank">古くなってしまったPHPフレームワークとPHPのバージョンアップ戦略</a></p>
                     <p><em><span>Go Conference 2021 Autumn</span></em><br><a href="https://speakerdeck.com/bmf_san/httpdetukuruhttprutazi-zuo-ru-men" target="_blank">net/httpでつくるHTTPルーター自作入門</a></p>
-                    <p><em><span>Laravel JP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">Laravel で始めるテスト生活</a></p>
-                    <p><em><span>PHPerKaigi 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/laraveldeshi-merutesutosheng-huo" target="_blank">URLルーティングをつくる</a></p>
-                    <p><em><span>Japan PHP Conference 2019</span></em><br><a href="https://speakerdeck.com/bmf_san/phpdeurlruteinguwozi-zuo-suru" target="_blank">PHP で URL ルーティングを自作する</a></p>
-                    <p><em><span>Japan PHP Conference 2018</span></em><br><a href="https://speakerdeck.com/bmf_san/20dai-gakao-eruenziniakiyarialun" target="_blank">20 代が考えるエンジニアキャリア論</a></p>
-                    <p><em><span>Japan PHP Conference 2017</span></em><br><a href="https://speakerdeck.com/bmf_san/3nian-mu-enziniaosswohazimeru" target="_blank">3年目エンジニアOSSをはじめる</a></p>
                 </div>
                 <div class="margin-top-3rem">
                     <h2>ボランティア</h2>
