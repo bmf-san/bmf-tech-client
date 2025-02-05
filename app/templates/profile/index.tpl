@@ -142,6 +142,10 @@
                                 <td><a href="https://dividable.net/" target="_blank">DAINOTE</a></td>
                                 <td><a href="https://dividable.net/it-career/engineer/ruby-no-experience" target="_blank">未経験からRubyエンジニアになるには？求人例・転職方法・スキルを紹介</a></td>
                             </tr>
+                            <tr>
+                                <td><a href="https://assist-all.co.jp/column/" target="_blank">マーケティング情報局</a></td>
+                                <td><a href="https://assist-all.co.jp/column/hp/20241104/" target="_blank">プログラマーが提供するホームページ制作！専門性と効果的なWeb戦略を解説 #ホームページ制作プログラマー #ホームページ制作 #プログラマー</a></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
