@@ -81,4 +81,17 @@
 {{ end }}
 {{ define "script" }}
 <script async src="../js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('pre > code.mermaid').forEach(function(codeBlock) {
+      const pre = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      pre.parentNode.replaceChild(mermaidDiv, pre);
+    });
+    mermaid.initialize({ startOnLoad: true });
+  });
+</script>
 {{ end }}
