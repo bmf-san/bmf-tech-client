@@ -81,5 +81,5 @@
 {{ end }}
 {{ define "script" }}
 <script async src="../js/toc.js"></script>
-<script async src="../js/customMermaid.js"></script>
+<script src="../js/customMermaid.js"></script>
 {{ end }}
