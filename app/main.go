@@ -85,6 +85,10 @@ func main() {
 		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
 	}))
 
+	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/js/customMermaid.js`, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.FileServer(http.Dir("static")).ServeHTTP(w, r)
+	}))
+
 	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/`, hc.Index())
 	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/posts`, pc.Index())
 	r.Methods(http.MethodGet).Use(mw.Log, mw.Recovery).Handler(`/posts/search`, pc.IndexByKeyword())
