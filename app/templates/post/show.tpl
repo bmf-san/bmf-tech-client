@@ -81,6 +81,5 @@
 {{ end }}
 {{ define "script" }}
 <script async src="../js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script async src="../js/customMermaid.js"></script>
 {{ end }}
