@@ -11,5 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     pre.parentNode.replaceChild(mermaidDiv, pre);
   });
 
-  mermaid.initialize({ startOnLoad: true });
+  mermaid.initialize({ startOnLoad: false }); // 自動は無効化
+  mermaid.init(undefined, document.querySelectorAll('.mermaid')); // 手動で再描画
 });
