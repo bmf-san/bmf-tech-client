@@ -18,10 +18,11 @@
             </div>
             <div class="text-align-left">
                 <h1 style="margin-top: 0; font-size: xx-large"><strong>Kenta Takeuchi</strong></h1>
-                <p>ソフトウェアエンジニア。<br></p>
-                <p>2015年に大学卒業後、フリーランス、スタートアップ、受託開発会社等を経て、現在は事業会社の開発部門にてソフトウェアエンジニアとして従事しています。</p>
+                <p>シニアプラットフォームエンジニア。<br></p>
+                <p>フリーランス → スタートアップ → 受託開発企業 → 事業会社を経て10年以上のエンジニア経験。。現在はHRテック領域にてシニアプラットフォームエンジニアとして従事。</p>
+                <p>システムアーキテクチャの設計・リアーキテクチャリングを専門領域とし、分散システム・マイクロサービスアーキテクチャ設計、基盤システム開発（認証・認可・通知・決済基盤等）、チーム立ち上げやマネジメントに従事。</p>
                 <p><strong><em>「組織・ソフトウェアの価値を長期的に向上させること」</em></strong>を目指して、自らが関わる組織とプロダクトの成長に貢献していきたいと日々思っています。</p>
-                <p>自分が使いたいアプリケーションのコードを書くのが好きです。<br>趣味はコーディングとジムと観葉植物です。</p>
+                <p>システムアーキテクチャに関心があります。</p><br>趣味はOSS開発とジムと観葉植物です。</p>
                 <div class="margin-top-3rem">
                     <table>
                         <thead>
@@ -36,6 +37,10 @@
                                 <td>bmf.infomation@gmail.com</td>
                             </tr>
                             <tr>
+                                <td>GitHub</td>
+                                <td><a href="https://github.com/bmf-san">bmf-san</a></td>
+                            </tr>
+                            <tr>
                                 <td>Twitter</td>
                                 <td><a href="https://twitter.com/bmf_san">bmf_san</a></td>
                             </tr>
@@ -44,8 +49,8 @@
                                 <td><a href="www.linkedin.com/in/bmf-san">bmf-san</a></td>
                             </tr>
                             <tr>
-                                <td>GitHub</td>
-                                <td><a href="https://github.com/bmf-san">bmf-san</a></td>
+                                <td>個人ブログ</td>
+                                <td><a href="https://bmf-tech.com">bmf-tech.com</a></td>
                             </tr>
                             <tr>
                                 <td>DEV</td>
@@ -67,44 +72,49 @@
                     </table>
                 </div>
                 <div class="margin-top-3rem">
-                    <h2>経験</h2>
-                    <h3>技術</h3>
+                    <h2>主な経験</h2>
+                    <h3>技術・アーキテクチャ</h3>
                     <ul>
-                        <li>GoやPHPを使ったバックエンド開発</li>
-                        <li>ReactやVue.jsを使ったフロンドエンド開発</li>
-                        <li>分散システムの構築・開発・運用</li>
-                        <li>AWSやGCPなどのクラウドベンダーを利用したシステム設計・開発・運用</li>
+                        <li>分散システム・マイクロサービスアーキテクチャ設計</li>
+                        <li>基盤システム開発</li>
+                        <li>クラウドインフラ構築・運用</li>
+                        <li>システムパフォーマンス最適化</li>
+                        <li>Go・PHPによる大規模バックエンド開発</li>
+                        <li>React・Vue.jsによるフロントエンド開発</li>
                     </ul>
-                    <h3>チームマネジメント</h3>
+                    <h3>チーム・組織マネジメント</h3>
                     <ul>
-                        <li>チームビルディング</li>
-                        <li>チームマネジメント</li>
-                        <li>プロジェクトマネジメント</li>
-                        <li>スクラム開発の運用</li>
+                        <li>開発チーム立ち上げ・技術組織マネジメント</li>
+                        <li>チームビルディング・プロジェクトマネジメント</li>
+                        <li>スクラム開発の導入・運用</li>
+                        <li>採用活動・オンボーディング支援</li>
+                        <li>技術カルチャー推進・技術戦略策定</li>
                     </ul>
-                    <h3>採用・広報</h3>
+                    <h3>コミュニティ・アウトプット</h3>
                     <ul>
-                        <li>採用活動</li>
-                        <li>技術カルチャーの推進</li>
+                        <li>OSS開発</li>
+                        <li>技術カンファレンス登壇</li>
+                        <li>技術書籍執筆（Zenn）</li>
+                        <li>個人ブログ運営（bmf-tech.com）</li>
+                        <li>キャリア支援・技術メンタリング</li>
                     </ul>
                 </div>
                 <div class="margin-top-3rem">
                     <h2>職歴</h2>
-                    <p><em>株式会社SmartHR/ソフトウェアエンジニア</em><br><span class="font-size-small">2024-現在</span></p>
-                    <p class="font-size-small">プロダクト基盤開発に従事。</p>
+                    <p><em>株式会社SmartHR/シニアプラットフォームエンジニア</em><br><span class="font-size-small">2024年6月-現在</span></p>
+                    <p class="font-size-small">HRテック領域でのプラットフォーム開発・運用、システムアーキテクチャ設計・リアーキテクチャリング、パフォーマンス最適化プロジェクトへの参画。</p>
                     <br>
-                    <p><em>株式会社マクアケ/ソフトウェアエンジニア</em><br><span class="font-size-small">2018-2024</span></p>
-                    <p class="font-size-small">エンドユーザー・管理者向け機能開発、技術負債解消、システム基盤開発などに従事。</p>
+                    <p><em>株式会社マクアケ/シニアソフトウェアエンジニア・リードエンジニア</em><br><span class="font-size-small">2018年12月-2024年5月</span></p>
+                    <p class="font-size-small">システム基盤開発チームのリードエンジニアとしてビジネス成長に伴うシステムスケーラビリティ課題の解決、認証基盤・認可基盤・通知基盤等の基盤システム開発をリード。</p>
                     <br>
-                    <p><em>株式会社イノベーター・ジャパン/ソフトウェアエンジニア</em><br><span class="font-size-small">2017-2018</span></p>
-                    <p class="font-size-small">受託・自社開発にてエンドユーザー向け機能開発に従事。</p>
-                </div>
-                <div class="margin-top-3rem">
-                    <h2>資格</h2>
-                    <p><span>2023</span> <em>Google Cloud Certified Associate Cloud Engineer</em></p>
-                    <p><span>2022</span> <em>Registerd Scrum Master（RSM）</em></p>
-                    <p><span>2021</span> <em>AWS Certified Solutions Architect – Associate</em></p>
-                    <p><span>2016</span> <em>Webデザイン技能検定2級</em></p>
+                    <p><em>株式会社イノベーター・ジャパン/プロダクトマネージャー兼エンジニア</em><br><span class="font-size-small">2017年5月-2018年9月</span></p>
+                    <p class="font-size-small">求人関連の新規サービス立ち上げ（企画・プロトタイプ開発）、CMSとECの機能を持つパッケージ開発、キャンペーンサイトの受託開発。</p>
+                    <br>
+                    <p><em>スタートアップ企業/Webエンジニア</em><br><span class="font-size-small">2016年5月-2017年3月</span></p>
+                    <p class="font-size-small">受託開発企業にて求人サービスの機能開発・UI実装、効果計測によるサービスグロース。</p>
+                    <br>
+                    <p><em>フリーランス/Web開発エンジニア</em><br><span class="font-size-small">2015年6月-2016年5月</span></p>
+                    <p class="font-size-small">Webの受託開発案件に従事、多様なクライアント・プロジェクトでの開発経験。</p>
                 </div>
                 <div class="margin-top-3rem">
                     <h2>書籍</h2>
