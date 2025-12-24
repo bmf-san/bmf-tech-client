@@ -119,6 +119,23 @@
                     <p class="font-size-small">Webの受託開発案件に従事、多様なクライアント・プロジェクトでの開発経験。</p>
                 </div>
                 <div class="margin-top-3rem">
+                    <h2>OSS</h2>
+                    <p><a href="https://github.com/bmf-san/ggc" target="_blank">ggc</a></p>
+                    <p class="font-size-small">Gitクライアントツール</p>
+                    <p><a href="https://github.com/bmf-san/gobel-api" target="_blank">gobel-api</a></p>
+                    <p class="font-size-small">Go製Headless CMS</p>
+                    <p><a href="https://github.com/bmf-san/goblin" target="_blank">goblin</a></p>
+                    <p class="font-size-small">Go製HTTP Router</p>
+                    <p><a href="https://github.com/bmf-san/gondola" target="_blank">gondola</a></p>
+                    <p class="font-size-small">Go製リバースプロキシ</p>
+                    <p><a href="https://github.com/bmf-san/go-clean-architecture-web-application-boilerplate" target="_blank">go-clean-architecture-web-application-boilerplate</a></p>
+                    <p class="font-size-small">GoでのClean Architecture実装例</p>
+                    <p><a href="https://github.com/bmf-san/resume-manager" target="_blank">resume-manager</a></p>
+                    <p class="font-size-small">履歴書・職務経歴書管理ツール</p>
+                    <p><a href="https://github.com/bmf-san/spec-by-bmf-san" target="_blank">spec-by-bmf-san</a></p>
+                    <p class="font-size-small">オリジナルのプラクティスを仕様として管理</p>
+                </div>
+                <div class="margin-top-3rem">
                     <h2>書籍</h2>
                     <p><a href="https://zenn.dev/books/3f41c5cd34ec3f" target="_blank">net/httpでつくるHTTPルーター自作入門</a><br><span class="font-size-small">2022</span></p>
                     <p class="font-size-small">Goで開発したHTTPルーターの知見を元に、標準パッケージのみでHTTPルーターを実装する流れを本にしました。</p>
