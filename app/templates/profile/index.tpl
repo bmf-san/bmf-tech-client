@@ -165,6 +165,10 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td><a href="https://freelance-hub.jp/" target="_blank">フリーランスHub</a></td>
+                                <td><a href="https://freelance-hub.jp/column/detail/697/" target="_blank">スキルアップやキャッチアップにつながる！注目のITブログ・メディアまとめ　その2</a></td>
+                            </tr>
+                            <tr>
                                 <td><a href="https://freelance.levtech.jp/" target="_blank">レバテックフリーランス</a></td>
                                 <td><a href="https://freelance.levtech.jp/guide/detail/1641/" target="_blank">市場価値を高めたいエンジニアに読んでほしい技術ブログ特集</a></td>
                             </tr>
